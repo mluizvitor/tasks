@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { toast } from "react-toastify";
 import { genId } from "../components/utils/genId";
 
 interface Task {
@@ -24,31 +31,79 @@ interface TasksProviderProps {
 const TaskContext = createContext<TaskContentData>({} as TaskContentData);
 
 export function TaskProvider({ children }: TasksProviderProps) {
-  const [taskList, setTaskList] = useState<Task[]>([]);
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const tasks = localStorage.getItem("@tasks:tasks");
+
+    if (tasks) {
+      return JSON.parse(tasks);
+    }
+
+    return [];
+  });
+
+  function toastSuccess(toastInput: string) {
+    toast(toastInput, {
+      className: "tasks-toastify-success",
+      progressClassName: "tasks-toastify-success-progress",
+      autoClose: 3000,
+    });
+  }
+
+  function toastError(toastInput: string) {
+    toast(toastInput, {
+      className: "tasks-toastify-error",
+      progressClassName: "tasks-toastify-error-progress",
+      autoClose: 3000,
+    });
+  }
 
   function createTask(taskInput: TaskInput) {
-    let newTaskList = [...taskList];
+    try {
+      if (taskInput.title.length === 0) {
+        toastError("🙅️ Você deve adicionar um título!");
 
-    newTaskList.push({
-      ...taskInput,
-      id: genId(),
-      isCompleted: false,
-    });
+        return;
+      }
 
-    setTaskList(newTaskList);
+      let newTaskList = [...taskList];
+
+      newTaskList.push({
+        ...taskInput,
+        id: genId(),
+        isCompleted: false,
+      });
+
+      setTaskList(newTaskList);
+      toastSuccess("👍️ Tarefa adicionada com sucesso!");
+    } catch {
+      toastError("😥️ Não foi possível adicionar tarefa!");
+    }
   }
 
   function deleteTask(taskId: string) {
-    return setTaskList(taskList.filter((task) => task.id !== taskId));
+    try {
+      toastSuccess("👍️ Tarefa removida com sucesso!");
+      setTaskList(taskList.filter((task) => task.id !== taskId));
+    } catch {
+      toastError("😥️ Não foi possível remover tarefa!");
+    }
   }
 
   function toggleTask(taskId: string) {
-    let newTaskList = taskList.map((task) =>
-      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
-    );
+    try {
+      let newTaskList = taskList.map((task) =>
+        task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+      );
 
-    setTaskList(newTaskList);
+      setTaskList(newTaskList);
+    } catch {
+      toastError("😥️ Não foi alterar o estado da tarefa!");
+    }
   }
+
+  useEffect(() => {
+    localStorage.setItem("@tasks:tasks", JSON.stringify(taskList));
+  }, [taskList]);
 
   return (
     <TaskContext.Provider

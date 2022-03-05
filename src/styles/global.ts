@@ -1,4 +1,4 @@
-import { darken, transparentize } from "polished";
+import { darken, transparentize, saturate, lighten } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -96,6 +96,36 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .tasks-toastify-success,
+  .tasks-toastify-error {
+    font-size: 1rem;
+    font-family: Inter, sans-serif;
+    color: var(--surface);
+    border-radius: 1rem;
+
+    button > svg {
+      color: var(--surface);
+    }
+
+    @media (max-width: 470px) {
+      margin: 1.5rem 1.5rem 0 ;
+    }
+  }
+  .tasks-toastify-success {
+    background-color: var(--success);
+  }
+
+  .tasks-toastify-success-progress {
+    background: ${lighten(0.25, saturate(0.3, "#2D403B"))};
+  }
+  
+  .tasks-toastify-error {
+    background-color: var(--error)
+  }
+
+  .tasks-toastify-error-progress {
+    background: ${lighten(0.25, saturate(0.3, "#7C2727"))};
   }
 
 `;
