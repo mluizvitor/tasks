@@ -8,7 +8,7 @@ Modal.setAppElement("#root");
 export function NewTaskModal() {
   return (
     <Modal
-      isOpen={true}
+      isOpen={false}
       className="modal-body"
       overlayClassName="modal-overlay"
     >

@@ -49,6 +49,7 @@ export default createGlobalStyle`
     appearance: none;
     background-color: none;
     margin: 0;
+    cursor: pointer;
 
     font: inherit;
     color: red;

@@ -5,7 +5,7 @@ export const Container = styled.ul`
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
-  padding: 1.5rem 0.5rem;
+  padding: 1.5rem 0.5rem 3rem;
   border-radius: 1.5rem 1.5rem 0 0;
   list-style: none;
   height: calc(100vh - 6rem);

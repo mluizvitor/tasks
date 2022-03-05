@@ -27,7 +27,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${(props) => darken(0.075, props.bgColor)};
+    background-color: ${(props) => darken(0.05, props.bgColor)};
   }
 
   svg {
