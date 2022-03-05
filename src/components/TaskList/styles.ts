@@ -67,7 +67,9 @@ export const EmptyPage = styled.div`
 
   img {
     width: 100%;
+    height: 100%;
     max-width: 512px;
+    object-fit: contain;
   }
 
   p {
