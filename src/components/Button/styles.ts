@@ -30,7 +30,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
     background-color: ${(props) => darken(0.05, props.bgColor)};
   }
 
-  svg {
-    margin-right: 1rem;
+  svg + span {
+    margin-left: 1rem;
   }
 `;

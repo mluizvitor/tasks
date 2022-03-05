@@ -52,9 +52,8 @@ export default createGlobalStyle`
     cursor: pointer;
 
     font: inherit;
-    color: red;
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     border: 2px solid var(--main-color);
     border-radius: 12px;
 
@@ -69,7 +68,7 @@ export default createGlobalStyle`
 
       background-color: var(--surface);
       transform-origin: center;
-      clip-path: polygon(6px 10px, 4px 12px, 10px 18px, 20px 8px, 18px 6px, 10px 14px, 6px 10px);
+      clip-path: polygon(25.000% 41.667%, 16.667% 50.000%, 41.667% 75.000%, 83.333% 33.333%, 75.000% 25.000%, 41.667% 58.333%)
 
     }
     
