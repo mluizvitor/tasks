@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Header } from "./components/Header";
 import { NewTaskModal } from "./components/NewTaskModal";
 import { TaskList } from "./components/TaskList";
+import { TaskProvider } from "./hooks/useTasks";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,8 +18,10 @@ function App() {
   return (
     <>
       <Header openModal={handleOpenModal} />
-      <TaskList />
-      <NewTaskModal isModalOpen={isModalOpen} closeModal={handleCloseModal} />
+      <TaskProvider>
+        <TaskList />
+        <NewTaskModal isModalOpen={isModalOpen} closeModal={handleCloseModal} />
+      </TaskProvider>
     </>
   );
 }
