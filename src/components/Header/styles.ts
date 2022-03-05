@@ -12,29 +12,3 @@ export const Container = styled.header`
   align-items: center;
   justify-content: space-between;
 `;
-
-export const Button = styled.button`
-  background-color: var(--surface);
-  color: var(--main-color);
-  height: 3rem;
-  padding: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: ${darken(0.075, "#FCF7F2")};
-  }
-
-  svg {
-    margin-right: 1rem;
-  }
-
-  span {
-    font-weight: 500;
-    font-size: 1rem;
-  }
-`;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { cssVar, transparentize } from "polished";
 
 export const Container = styled.ul`
   background-color: var(--background);
@@ -51,23 +50,21 @@ export const ListItem = styled.li`
   }
 `;
 
-export const Button = styled.button`
-  color: var(--main-color);
-  border: none;
-  border-radius: 0.5rem;
-  background-color: ${transparentize(0.9, "#D8605B")};
-  height: 40px;
-  padding: 0 16px;
+export const EmptyPage = styled.div`
+  padding: 0 1rem;
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+  height: 100%;
 
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-
-  span {
-    font-weight: 500;
+  img {
+    width: 100%;
+    max-width: 512px;
   }
 
-  svg + span {
-    margin-left: 8px;
+  p {
+    color: var(--text-title);
+    font-size: 1.25rem;
+    text-align: center;
   }
 `;

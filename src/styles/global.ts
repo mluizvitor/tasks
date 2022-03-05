@@ -1,3 +1,4 @@
+import { transparentize } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -28,6 +29,11 @@ export default createGlobalStyle`
 
   body, button, input, textarea { 
     font-family: Inter, sans-serif;
+    font-size: 1rem;
+  }
+
+  button {
+    font-weight: 600;
   }
 
   body {
