@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://mvitor.dev/tasks/",
   "display": "fullscreen",
   "theme_color": "#D8605B",
   "background_color": "#D8605B"
