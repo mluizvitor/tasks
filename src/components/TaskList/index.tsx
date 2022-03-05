@@ -3,6 +3,7 @@ import { Container, ListItem, EmptyPage } from "./styles";
 
 import emptyImg from "../../assets/empty.png";
 import { Button } from "../Button";
+import { useState } from "react";
 
 interface Task {
   id: string | number;
@@ -12,7 +13,7 @@ interface Task {
 }
 
 export function TaskList() {
-  const tasksList: Task[] = [
+  const tasksListFixed: Task[] = [
     {
       id: 1,
       title: "Teste 1",
@@ -49,29 +50,52 @@ export function TaskList() {
       isCompleted: false,
     },
   ];
+
+  const [taskList, setTaskList] = useState(tasksListFixed);
+
+  function handleDeleteTask(taskId: string | number) {
+    return setTaskList(taskList.filter((task) => task.id !== taskId));
+  }
+
+  function handleToggleTask(taskId: string | number) {
+    let newTaskList = taskList.map((task) =>
+      task.id === taskId ? { ...task, isCompleted: !task.isCompleted } : task
+    );
+
+    setTaskList(newTaskList);
+  }
+
   return (
     <Container>
-      {tasksList.length === 0 ? (
+      {taskList.length === 0 ? (
         <EmptyPage>
           <img src={emptyImg} alt="Nada por aqui ainda" />
           <p>Suas tarefas aparacerão aqui</p>
         </EmptyPage>
       ) : (
-        tasksList.map((task) => (
+        taskList.map((task) => (
           <ListItem key={task.id}>
-            <input type="checkbox" checked={task.isCompleted} />
+            <input
+              type="checkbox"
+              checked={task.isCompleted}
+              onClick={() => handleToggleTask(task.id)}
+            />
             <div>
-              <strong>{task.title}</strong>
+              <strong
+                className={task.isCompleted ? "complete" : ""}
+                onClick={() => handleToggleTask(task.id)}
+              >
+                {task.title}
+              </strong>
               {task.description && <p>{task.description}</p>}
             </div>
             <footer>
-              <Button color="#D8605B" bgColor="#F8E8E3">
-                <FiEdit3 size={24} />
-                <span>editar</span>
-              </Button>
-              <Button color="#D8605B" bgColor="#F8E8E3">
-                <FiTrash2 size={24} />
-                <span>deletar</span>
+              <Button
+                color="#D8605B"
+                bgColor="#F8E8E3"
+                onClick={() => handleDeleteTask(task.id)}
+              >
+                <FiTrash2 size={16} />
               </Button>
             </footer>
           </ListItem>
