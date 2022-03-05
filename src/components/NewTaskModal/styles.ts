@@ -25,6 +25,7 @@ export const NewTaskForm = styled.form`
   textarea {
     height: 7rem;
     padding: 0.875rem 1rem;
+    resize: none;
   }
 
   input,

@@ -31,7 +31,7 @@ export const ListItem = styled.li`
 
     strong {
       font-size: 1.25rem;
-      color: #2e4e6b;
+      color: var(--text-title);
       font-weight: 600;
     }
 
@@ -39,7 +39,7 @@ export const ListItem = styled.li`
       font-size: 0.875rem;
       line-height: 1.25rem;
       margin-top: 1rem;
-      color: #7e8a95;
+      color: var(--text-body);
     }
   }
 

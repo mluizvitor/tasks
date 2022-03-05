@@ -1,4 +1,4 @@
-import { transparentize } from "polished";
+import { darken, transparentize } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -7,8 +7,8 @@ export default createGlobalStyle`
 
     --main-color: #D8605B;
 
-    --text-title: #8C3E3B;
-    --text-body: #AE7672;
+    --text-title: #5C4F4E;
+    --text-body: #948685;
 
     --surface: #FCF7F2;
     --background: #F7EDE1;
@@ -92,7 +92,7 @@ export default createGlobalStyle`
 
   .modal-overlay {
     position: fixed;
-    background-color: ${transparentize(0.25, "#8C3E3B")};
+    background-color: ${darken(0.25, transparentize(0.25, "#8C3E3B"))};
     inset: 0px;
     display: flex;
     align-items: center;
