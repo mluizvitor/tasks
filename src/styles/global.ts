@@ -74,5 +74,22 @@ export default createGlobalStyle`
     }
   }
 
+  .modal-body {
+    width: 100%;
+    max-width: 512px;
+    background-color: var(--surface);
+    padding: 1.5rem;
+    margin: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    background-color: ${transparentize(0.25, "#8C3E3B")};
+    inset: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 `;

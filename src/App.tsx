@@ -1,5 +1,6 @@
 import React from "react";
 import { Header } from "./components/Header";
+import { NewTaskModal } from "./components/NewTaskModal";
 import { TaskList } from "./components/TaskList";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <Header />
       <TaskList />
+      <NewTaskModal />
     </>
   );
 }
