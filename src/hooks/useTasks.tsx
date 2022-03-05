@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { genId } from "../components/utils/genId";
+import { genId } from "../utils/genId";
 
 interface Task {
   id: string;
