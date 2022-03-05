@@ -1,14 +1,22 @@
-import { FiPlus } from "react-icons/fi";
+import { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "../Button";
+
+import { FiPlus } from "react-icons/fi";
 import { NewTaskForm } from "./styles";
 
 Modal.setAppElement("#root");
 
-export function NewTaskModal() {
+interface NewTaskModalProps {
+  isModalOpen: boolean;
+  closeModal: () => void;
+}
+
+export function NewTaskModal({ isModalOpen, closeModal }: NewTaskModalProps) {
   return (
     <Modal
-      isOpen={false}
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
       className="modal-body"
       overlayClassName="modal-overlay"
     >
