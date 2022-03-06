@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { darken } from "polished";
 
 export const Container = styled.header`
   display: flex;
@@ -11,4 +10,15 @@ export const Container = styled.header`
 
   align-items: center;
   justify-content: space-between;
+
+  div {
+    display: flex;
+    gap: 1rem;
+
+    @media (max-width: 475px) {
+      button > span {
+        display: none;
+      }
+    }
+  }
 `;

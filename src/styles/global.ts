@@ -28,11 +28,15 @@ export default createGlobalStyle`
   }
 
   body, button, input, textarea { 
-    font-family: Inter, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
   }
 
-  button {
+  body {
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong, button {
     font-weight: 600;
   }
 
@@ -100,7 +104,7 @@ export default createGlobalStyle`
   .tasks-toastify-success,
   .tasks-toastify-error {
     font-size: 1rem;
-    font-family: Inter, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     color: var(--surface);
     border-radius: 1rem;
     padding: 1rem 1rem;

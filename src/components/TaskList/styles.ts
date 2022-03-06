@@ -108,7 +108,7 @@ export const EmptyPage = styled.div`
     min-height: 3.5rem;
 
     span {
-      background: var(--text-title);
+      background: var(--text-body);
       color: var(--surface);
       border-radius: 0.5rem 0 0 0.5rem;
       padding: 0 1rem;

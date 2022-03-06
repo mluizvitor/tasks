@@ -18,7 +18,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
   }};
 
   height: 3rem;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
   border: none;
   border-radius: 0.5rem;
   display: flex;
@@ -32,6 +32,6 @@ export const ButtonContainer = styled.button<ButtonProps>`
   }
 
   svg + span {
-    margin-left: 1rem;
+    margin-left: 0.75rem;
   }
 `;
