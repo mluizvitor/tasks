@@ -18,7 +18,7 @@ export const NewTaskForm = styled.form`
   }
 
   input {
-    height: 3rem;
+    height: 3.5rem;
     padding: 0 1rem;
   }
 

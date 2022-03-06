@@ -23,6 +23,7 @@ export const ButtonContainer = styled.button<ButtonProps>`
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   transition: background-color 0.2s;
 
