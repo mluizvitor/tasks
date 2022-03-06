@@ -5,7 +5,7 @@ export const Container = styled.ul`
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
-  padding: 1.5rem 0.5rem 6rem;
+  padding: 1.5rem 0.5rem 3rem;
   border-radius: 1.5rem 1.5rem 0 0;
   list-style: none;
   height: calc(100vh - 6rem);
@@ -70,7 +70,8 @@ export const EmptyPage = styled.div`
   img {
     width: 100%;
     height: 100%;
-    max-width: 512px;
+    min-height: 8rem;
+    max-width: 32rem;
     object-fit: contain;
   }
 
@@ -87,9 +88,11 @@ export const EmptyPage = styled.div`
     background-color: var(--surface);
     padding: 1.5rem;
     border-radius: 1.5rem;
-    box-shadow: 0 2px 1rem #94868533;
+
+    max-width: 32rem;
 
     p:first-child {
+      font-size: 1rem;
       margin: 0.5rem 0;
     }
   }

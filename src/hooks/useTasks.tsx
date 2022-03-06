@@ -83,17 +83,28 @@ export function TaskProvider({ children }: TasksProviderProps) {
   }
 
   function importTasks(taskInput: TaskInput[]) {
-    if (!taskInput) return;
+    try {
+      if (!taskInput) return;
 
-    const newTaskInput: Task[] = taskInput.map((task) => ({
-      ...task,
-      id: genId(),
-      isCompleted: false,
-    }));
+      const newTaskInput: Task[] = taskInput.map((task) => {
+        if (task.title.length === 0) {
+          throw new Error();
+        } else {
+          return {
+            title: task.title,
+            description: task.description,
+            id: genId(),
+            isCompleted: false,
+          };
+        }
+      });
 
-    let newTaskList = [...taskList].concat(newTaskInput);
+      let newTaskList = [...taskList].concat(newTaskInput);
 
-    setTaskList(newTaskList);
+      setTaskList(newTaskList);
+    } catch {
+      toastError("🙅 Arquivo inválido");
+    }
   }
 
   function deleteTask(taskId: string) {
