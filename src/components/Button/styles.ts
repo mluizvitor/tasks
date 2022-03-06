@@ -35,3 +35,9 @@ export const ButtonContainer = styled.button<ButtonProps>`
     margin-left: 0.75rem;
   }
 `;
+
+export const ButtonTwoOptions = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+`;

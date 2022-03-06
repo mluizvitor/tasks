@@ -4,13 +4,6 @@ export const NewTaskForm = styled.form`
   display: grid;
   gap: 1rem;
 
-  h1 {
-    color: var(--text-title);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.5rem;
-  }
-
   input,
   textarea {
     color: var(--text-title);

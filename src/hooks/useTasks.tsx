@@ -22,6 +22,7 @@ interface TaskContentData {
   createTask: (taskInput: TaskInput) => void;
   importTasks: (taskInput: TaskInput[]) => void;
   deleteTask: (taskId: string) => void;
+  deleteAllTasks: () => void;
   toggleTask: (taskId: string) => void;
 
   toastSuccess: (toastInput: string) => void;
@@ -116,6 +117,14 @@ export function TaskProvider({ children }: TasksProviderProps) {
     }
   }
 
+  function deleteAllTasks() {
+    try {
+      setTaskList([]);
+    } catch {
+      toastError("😥️ Não foi possível limpar todoas as tarefas!");
+    }
+  }
+
   function toggleTask(taskId: string) {
     try {
       let newTaskList = taskList.map((task) =>
@@ -139,6 +148,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
         createTask,
         importTasks,
         deleteTask,
+        deleteAllTasks,
         toggleTask,
         toastSuccess,
         toastError,

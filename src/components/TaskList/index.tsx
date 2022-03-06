@@ -1,4 +1,4 @@
-import { FiTrash2, FiFileText } from "react-icons/fi";
+import { FiTrash2, FiUpload } from "react-icons/fi";
 import { Container, ListItem, EmptyPage } from "./styles";
 
 import emptyImg from "../../assets/empty.png";
@@ -80,7 +80,7 @@ export function TaskList() {
               accept=".json"
             />
             <Button color={"#f7ede1"} bgColor={"#d8605b"} onClick={handleLoad}>
-              <FiFileText size={24} />
+              <FiUpload size={24} />
               <span>carregar</span>
             </Button>
           </div>

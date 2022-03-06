@@ -27,7 +27,7 @@ export default createGlobalStyle`
     background-color: var(--main-color);
   }
 
-  body, button, input, textarea { 
+  body, button, input, textarea, span { 
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
   }
@@ -43,9 +43,19 @@ export default createGlobalStyle`
   body {
     overflow: hidden;
   }
-
+  
   button { 
     cursor: pointer;
+  }
+  
+  h1 {
+    color: var(--text-title);
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  p {
+    color: var(--text-body)
   }
 
   input[type="checkbox"] {
@@ -91,6 +101,9 @@ export default createGlobalStyle`
     padding: 1.5rem;
     margin: 1.5rem;
     border-radius: 1.5rem;
+    position: relative;
+    display: grid;
+    gap: 1rem;
   }
 
   .modal-overlay {
@@ -100,6 +113,14 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--text-body);
+    cursor: pointer;
   }
   .tasks-toastify-success,
   .tasks-toastify-error {

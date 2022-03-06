@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "../Button";
 
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 import { NewTaskForm } from "./styles";
 import { FormEvent } from "react";
 import { useTasks } from "../../hooks/useTasks";
@@ -39,6 +39,7 @@ export function NewTaskModal({ isModalOpen, closeModal }: NewTaskModalProps) {
       overlayClassName="modal-overlay"
     >
       <NewTaskForm onSubmit={handleSubmit}>
+        <FiX size={24} className="modal-close" onClick={closeModal} />
         <h1>Criar nova tarefa</h1>
 
         <input

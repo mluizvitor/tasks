@@ -19,7 +19,7 @@
     }
   ],
   "start_url": "https://mvitor.dev/tasks/",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#D8605B",
   "background_color": "#D8605B"
 }

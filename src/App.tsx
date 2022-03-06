@@ -9,7 +9,7 @@ import { ConfigModal } from "./components/ConfigModal";
 
 function App() {
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
-  const [isConfigModalOpen, setIsConfigModalOpen] = useState(true);
+  const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
 
   function handleOpenNewTaskModal() {
     setIsNewTaskModalOpen(true);
@@ -44,7 +44,7 @@ function App() {
           closeModal={handleCloseConfigModal}
         />
       </TaskProvider>
-      <ToastContainer limit={4} autoClose={3000} />
+      <ToastContainer limit={4} autoClose={3000} draggablePercent={50} />
     </>
   );
 }
