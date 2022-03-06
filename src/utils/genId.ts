@@ -4,7 +4,7 @@ export function genId() {
 
   let newId = "";
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     newId += charBase.charAt(Math.floor(Math.random() * charBase.length));
   }
 

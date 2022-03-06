@@ -20,8 +20,12 @@ type TaskInput = Omit<Task, "id" | "isCompleted">;
 interface TaskContentData {
   taskList: Task[];
   createTask: (taskInput: TaskInput) => void;
+  importTasks: (taskInput: TaskInput[]) => void;
   deleteTask: (taskId: string) => void;
   toggleTask: (taskId: string) => void;
+
+  toastSuccess: (toastInput: string) => void;
+  toastError: (toastInput: string) => void;
 }
 
 interface TasksProviderProps {
@@ -78,6 +82,20 @@ export function TaskProvider({ children }: TasksProviderProps) {
     }
   }
 
+  function importTasks(taskInput: TaskInput[]) {
+    if (!taskInput) return;
+
+    const newTaskInput: Task[] = taskInput.map((task) => ({
+      ...task,
+      id: genId(),
+      isCompleted: false,
+    }));
+
+    let newTaskList = [...taskList].concat(newTaskInput);
+
+    setTaskList(newTaskList);
+  }
+
   function deleteTask(taskId: string) {
     try {
       toastSuccess("👍️ Tarefa removida com sucesso!");
@@ -105,7 +123,15 @@ export function TaskProvider({ children }: TasksProviderProps) {
 
   return (
     <TaskContext.Provider
-      value={{ taskList, createTask, deleteTask, toggleTask }}
+      value={{
+        taskList,
+        createTask,
+        importTasks,
+        deleteTask,
+        toggleTask,
+        toastSuccess,
+        toastError,
+      }}
     >
       {children}
     </TaskContext.Provider>
