@@ -24,7 +24,7 @@ function App() {
         <TaskList />
         <NewTaskModal isModalOpen={isModalOpen} closeModal={handleCloseModal} />
       </TaskProvider>
-      <ToastContainer />
+      <ToastContainer limit={4} autoClose={3000} />
     </>
   );
 }

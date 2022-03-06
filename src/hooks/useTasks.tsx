@@ -45,7 +45,6 @@ export function TaskProvider({ children }: TasksProviderProps) {
     toast(toastInput, {
       className: "tasks-toastify-success",
       progressClassName: "tasks-toastify-success-progress",
-      autoClose: 3000,
     });
   }
 
@@ -53,7 +52,6 @@ export function TaskProvider({ children }: TasksProviderProps) {
     toast(toastInput, {
       className: "tasks-toastify-error",
       progressClassName: "tasks-toastify-error-progress",
-      autoClose: 3000,
     });
   }
 

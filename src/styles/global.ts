@@ -103,6 +103,7 @@ export default createGlobalStyle`
     font-family: Inter, sans-serif;
     color: var(--surface);
     border-radius: 1rem;
+    padding: 1rem 1.5rem;
 
     button > svg {
       color: var(--surface);
