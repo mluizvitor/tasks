@@ -5,24 +5,44 @@ import { NewTaskModal } from "./components/NewTaskModal";
 import { TaskList } from "./components/TaskList";
 import { TaskProvider } from "./hooks/useTasks";
 import "react-toastify/dist/ReactToastify.min.css";
+import { ConfigModal } from "./components/ConfigModal";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
+  const [isConfigModalOpen, setIsConfigModalOpen] = useState(true);
 
-  function handleOpenModal() {
-    setIsModalOpen(true);
+  function handleOpenNewTaskModal() {
+    setIsNewTaskModalOpen(true);
   }
 
   function handleCloseModal() {
-    setIsModalOpen(false);
+    setIsNewTaskModalOpen(false);
+  }
+
+  function handleOpenConfigModal() {
+    setIsConfigModalOpen(true);
+  }
+
+  function handleCloseConfigModal() {
+    setIsConfigModalOpen(false);
   }
 
   return (
     <>
-      <Header openModal={handleOpenModal} />
+      <Header
+        openNewTaskModal={handleOpenNewTaskModal}
+        openConfigModal={handleOpenConfigModal}
+      />
       <TaskProvider>
         <TaskList />
-        <NewTaskModal isModalOpen={isModalOpen} closeModal={handleCloseModal} />
+        <NewTaskModal
+          isModalOpen={isNewTaskModalOpen}
+          closeModal={handleCloseModal}
+        />
+        <ConfigModal
+          isModalOpen={isConfigModalOpen}
+          closeModal={handleCloseConfigModal}
+        />
       </TaskProvider>
       <ToastContainer limit={4} autoClose={3000} />
     </>
