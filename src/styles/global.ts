@@ -14,7 +14,11 @@ export default createGlobalStyle`
     --background: #F7EDE1;
 
     --success: #2D403B;
-    --error: #7C2727;
+    --error: HSL(30, 52%, 32%);
+
+    --toastify-toast-width: 24rem;
+    --toastify-toast-min-height: 4rem;
+    --toastify-font-family: 'Work Sans', sans-serif;
   }
 
   * {
@@ -128,9 +132,6 @@ export default createGlobalStyle`
   }
   .tasks-toastify-success,
   .tasks-toastify-error {
-    font-size: 1rem;
-    font-family: 'Work Sans', sans-serif;
-    color: var(--surface);
     border-radius: 1rem;
     padding: 1rem 1rem;
 
@@ -155,7 +156,7 @@ export default createGlobalStyle`
   }
 
   .tasks-toastify-error-progress {
-    background: ${lighten(0.25, saturate(0.3, "#7C2727"))};
+    background: ${lighten(0.25, saturate(0.3, "HSL(30, 52%, 32%)"))};
   }
 
   .hidden {

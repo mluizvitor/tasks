@@ -1,4 +1,4 @@
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
+import { ErrorToast, SuccessToast } from "../components/ToastNotifications";
 import { genId } from "../utils/genId";
 import { useModal } from "./useModal";
 
@@ -57,14 +58,14 @@ export function TaskProvider({ children }: TasksProviderProps) {
   });
 
   function toastSuccess(toastInput: string) {
-    toast(toastInput, {
+    toast(<SuccessToast toastMsg={toastInput} />, {
       className: "tasks-toastify-success",
       progressClassName: "tasks-toastify-success-progress",
     });
   }
 
   function toastError(toastInput: string) {
-    toast(toastInput, {
+    toast(<ErrorToast toastMsg={toastInput} />, {
       className: "tasks-toastify-error",
       progressClassName: "tasks-toastify-error-progress",
     });
@@ -73,7 +74,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
   function createTask(taskInput: TaskInput) {
     try {
       if (taskInput.title.length === 0) {
-        toastError("🙅️ Você deve adicionar um título!");
+        toastError("Você deve adicionar um título!");
 
         return;
       }
@@ -88,9 +89,9 @@ export function TaskProvider({ children }: TasksProviderProps) {
 
       setTaskList(newTaskList);
       closeNewTaskModal();
-      toastSuccess("👍️ Tarefa adicionada com sucesso!");
+      toastSuccess("Tarefa adicionada com sucesso!");
     } catch {
-      toastError("😥️ Não foi possível adicionar tarefa!");
+      toastError("Não foi possível adicionar tarefa!");
     }
   }
 
@@ -114,26 +115,27 @@ export function TaskProvider({ children }: TasksProviderProps) {
       let newTaskList = [...taskList].concat(newTaskInput);
 
       setTaskList(newTaskList);
-      toastSuccess("👍️ Tarefas importadas com sucesso");
+      toastSuccess("Tarefas importadas com sucesso!");
     } catch {
-      toastError("🙅 Arquivo inválido");
+      toastError("Arquivo inválido");
     }
   }
 
   function deleteTask(taskId: string) {
     try {
-      toastSuccess("👍️ Tarefa removida com sucesso!");
+      toastSuccess("Tarefa removida com sucesso!");
       setTaskList(taskList.filter((task) => task.id !== taskId));
     } catch {
-      toastError("😥️ Não foi possível remover tarefa!");
+      toastError("Não foi possível remover tarefa!");
     }
   }
 
   function deleteAllTasks() {
     try {
       setTaskList([]);
+      toastSuccess("Todas as tarefas foram removidas com sucesso!");
     } catch {
-      toastError("😥️ Não foi possível limpar todoas as tarefas!");
+      toastError("Não foi possível limpar todoas as tarefas!");
     }
   }
 
@@ -145,7 +147,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
 
       setTaskList(newTaskList);
     } catch {
-      toastError("😥️ Não foi alterar o estado da tarefa!");
+      toastError("Não foi possível alterar o estado da tarefa!");
     }
   }
 

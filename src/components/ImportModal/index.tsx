@@ -45,7 +45,7 @@ export function ImportModal() {
 
   function handleLoad() {
     if (!fileExists) {
-      toastError("🙅️ Escolha um arquivo para carregar");
+      toastError("Escolha um arquivo para carregar");
       return;
     }
 

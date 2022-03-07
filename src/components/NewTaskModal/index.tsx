@@ -43,6 +43,7 @@ export function NewTaskModal() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          autoFocus
         />
 
         <textarea
