@@ -17,7 +17,7 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
   const { deleteAllTasks } = useTasks();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isImportModalOpen, setIsImportModalOpen] = useState(true);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
   function handleOpenDeleteModal() {
     setIsDeleteModalOpen(true);
