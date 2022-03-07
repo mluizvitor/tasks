@@ -4,9 +4,11 @@ import { Container, ListItem, EmptyPage, ListContainer } from "./styles";
 import emptyImg from "../../assets/empty.webp";
 import { Button } from "../Button";
 import { useTasks } from "../../hooks/useTasks";
+import { useModal } from "../../hooks/useModal";
 
 export function TaskList() {
   const { taskList, deleteTask, toggleTask } = useTasks();
+  const { openImportModal } = useModal();
 
   function handleDeleteTask(taskId: string) {
     deleteTask(taskId);
@@ -22,15 +24,19 @@ export function TaskList() {
         <EmptyPage>
           <img src={emptyImg} alt="Nada por aqui ainda" />
           <p>Suas tarefas aparacerão aqui</p>
-          {/* <div>
+          <div>
             <p>
               Você pode importar um arquivo com suas tarefas salvas
               anteriormente.
             </p>
-            <Button onClick={() => {}} color={"#fcf7f2"} bgColor={"#d8605b"}>
+            <Button
+              onClick={openImportModal}
+              color={"#fcf7f2"}
+              bgColor={"#d8605b"}
+            >
               importar
             </Button>
-          </div> */}
+          </div>
         </EmptyPage>
       ) : (
         <ListContainer>

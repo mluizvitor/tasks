@@ -1,29 +1,25 @@
 import { FiTrash2 } from "react-icons/fi";
 import Modal from "react-modal";
+import { useModal } from "../../hooks/useModal";
 import { useTasks } from "../../hooks/useTasks";
 import { Button } from "../Button";
 import { ButtonTwoOptions } from "../Button/styles";
 
 Modal.setAppElement("#root");
 
-interface DeleteAllModalProps {
-  isDeleteModalOpen: boolean;
-  handleCloseDeleteModal: () => void;
-  handleDeleteAllTasks: () => void;
-}
+export function DeleteAllModal() {
+  const { taskList, deleteAllTasks } = useTasks();
+  const { isDeleteAllModalOpen, closeDeleteAllModal } = useModal();
 
-export function DeleteAllModal({
-  isDeleteModalOpen,
-  handleCloseDeleteModal,
-  handleDeleteAllTasks,
-}: DeleteAllModalProps) {
-  const { taskList } = useTasks();
+  function handleDeleteAllTasks() {
+    deleteAllTasks();
+    closeDeleteAllModal();
+  }
 
   return (
     <Modal
-      isOpen={isDeleteModalOpen}
-      // isOpen={true}
-      onRequestClose={handleCloseDeleteModal}
+      isOpen={isDeleteAllModalOpen}
+      onRequestClose={closeDeleteAllModal}
       className="modal-body"
       overlayClassName="modal-overlay"
     >
@@ -36,7 +32,7 @@ export function DeleteAllModal({
           <Button
             color={"#5C4F4E"}
             bgColor={"#F7EDE1"}
-            onClick={handleCloseDeleteModal}
+            onClick={closeDeleteAllModal}
             aria-label="Fechar"
           >
             <span>fechar</span>
@@ -52,7 +48,7 @@ export function DeleteAllModal({
             <Button
               color={"#5C4F4E"}
               bgColor={"#F7EDE1"}
-              onClick={handleCloseDeleteModal}
+              onClick={closeDeleteAllModal}
               aria-label="Não deletar"
             >
               <span>Não deletar</span>

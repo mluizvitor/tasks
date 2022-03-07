@@ -8,6 +8,14 @@ interface ModalContextData {
   isNewTaskModalOpen: boolean;
   openNewTaskModal: () => void;
   closeNewTaskModal: () => void;
+
+  isImportModalOpen: boolean;
+  openImportModal: () => void;
+  closeImportModal: () => void;
+
+  isDeleteAllModalOpen: boolean;
+  openDeleteAllModal: () => void;
+  closeDeleteAllModal: () => void;
 }
 
 interface ModalProviderProps {
@@ -19,7 +27,12 @@ const ModalContext = createContext<ModalContextData>({} as ModalContextData);
 export function ModalProvider({ children }: ModalProviderProps) {
   const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [isDeleteAllModalOpen, setDeleteAllModalOpen] = useState(false);
 
+  /**
+   * ConfigModal methods
+   */
   function openConfigModal() {
     setIsConfigModalOpen(true);
   }
@@ -28,12 +41,37 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setIsConfigModalOpen(false);
   }
 
+  /**
+   * NewTaskModal mothods
+   */
   function openNewTaskModal() {
     setIsNewTaskModalOpen(true);
   }
 
   function closeNewTaskModal() {
     setIsNewTaskModalOpen(false);
+  }
+
+  /**
+   * ImportModal methods
+   */
+  function openImportModal() {
+    setIsImportModalOpen(true);
+  }
+
+  function closeImportModal() {
+    setIsImportModalOpen(false);
+  }
+
+  /**
+   * DeleteAllModal methods
+   */
+  function openDeleteAllModal() {
+    setDeleteAllModalOpen(true);
+  }
+
+  function closeDeleteAllModal() {
+    setDeleteAllModalOpen(false);
   }
 
   return (
@@ -46,6 +84,14 @@ export function ModalProvider({ children }: ModalProviderProps) {
         isNewTaskModalOpen,
         openNewTaskModal,
         closeNewTaskModal,
+
+        isImportModalOpen,
+        openImportModal,
+        closeImportModal,
+
+        isDeleteAllModalOpen,
+        openDeleteAllModal,
+        closeDeleteAllModal,
       }}
     >
       {children}

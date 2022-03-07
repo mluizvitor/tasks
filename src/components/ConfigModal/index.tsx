@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { FiFileText, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
-import { useTasks } from "../../hooks/useTasks";
 import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
 import { MenuInfo, MenuList } from "./styles";
@@ -10,49 +8,27 @@ import { MenuInfo, MenuList } from "./styles";
 Modal.setAppElement("#root");
 
 export function ConfigModal() {
-  const { deleteAllTasks } = useTasks();
-
   const { isConfigModalOpen, closeConfigModal } = useModal();
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
-
-  function handleOpenDeleteModal() {
-    setIsDeleteModalOpen(true);
-    closeConfigModal();
-  }
-
-  function handleCloseDeleteModal() {
-    setIsDeleteModalOpen(false);
-  }
-
-  function handleOpenImportModal() {
-    setIsImportModalOpen(true);
-    closeConfigModal();
-  }
-
-  function handleCloseImportModal() {
-    setIsImportModalOpen(false);
-  }
-
-  function handleDeleteAllTasks() {
-    deleteAllTasks();
-    handleCloseDeleteModal();
-  }
+  const { openImportModal, openDeleteAllModal } = useModal();
+  const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
 
   return (
     <>
       <Modal
         isOpen={isConfigModalOpen}
         onRequestClose={closeConfigModal}
-        className="modal-body"
-        overlayClassName="modal-overlay"
+        className={
+          isDeleteAllModalOpen || isImportModalOpen ? "hidden" : "modal-body"
+        }
+        overlayClassName={
+          isDeleteAllModalOpen || isImportModalOpen ? "hidden" : "modal-overlay"
+        }
       >
         <FiX size={24} className="modal-close" onClick={closeConfigModal} />
         <h1>Configurações</h1>
 
         <MenuList>
-          <li onClick={handleOpenImportModal}>
+          <li onClick={openImportModal}>
             <FiUpload size={24} />
             <span>Importar tarefas de arquivo</span>
           </li>
@@ -62,7 +38,7 @@ export function ConfigModal() {
             <span>Salvar tarefas para arquivo</span>
           </li>
 
-          <li className="danger" onClick={handleOpenDeleteModal}>
+          <li className="danger" onClick={openDeleteAllModal}>
             <FiXOctagon size={24} />
             <span>Apagar todas as tarefas</span>
           </li>
@@ -91,16 +67,9 @@ export function ConfigModal() {
         </MenuInfo>
       </Modal>
 
-      <DeleteAllModal
-        isDeleteModalOpen={isDeleteModalOpen}
-        handleCloseDeleteModal={handleCloseDeleteModal}
-        handleDeleteAllTasks={handleDeleteAllTasks}
-      />
+      <DeleteAllModal />
 
-      <ImportModal
-        isImportModalOpen={isImportModalOpen}
-        handleCloseImportModal={handleCloseImportModal}
-      />
+      <ImportModal />
     </>
   );
 }

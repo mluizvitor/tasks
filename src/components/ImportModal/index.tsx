@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { FiCheckCircle, FiSearch, FiUpload, FiX } from "react-icons/fi";
+import { FiCheckCircle, FiSearch, FiUpload } from "react-icons/fi";
 import Modal from "react-modal";
+import { useModal } from "../../hooks/useModal";
 import { useTasks } from "../../hooks/useTasks";
 import { Button } from "../Button";
 import { ImportContainer } from "./styles";
 
 Modal.setAppElement("#root");
-
-interface ImportModalProps {
-  isImportModalOpen: boolean;
-  handleCloseImportModal: () => void;
-}
 
 interface Task {
   id: string;
@@ -21,11 +17,9 @@ interface Task {
 
 type TaskInput = Omit<Task, "id" | "isCompleted">;
 
-export function ImportModal({
-  isImportModalOpen,
-  handleCloseImportModal,
-}: ImportModalProps) {
+export function ImportModal() {
   const { importTasks, toastError } = useTasks();
+  const { isImportModalOpen, closeImportModal, closeConfigModal } = useModal();
 
   const [selectedFile, setSelectedFile] = useState<TaskInput[]>([]);
   const [fileName, setFileName] = useState("");
@@ -56,13 +50,14 @@ export function ImportModal({
     }
 
     importTasks(selectedFile);
-    handleCloseImportModal();
+    closeImportModal();
+    closeConfigModal();
   }
 
   return (
     <Modal
       isOpen={isImportModalOpen}
-      onRequestClose={handleCloseImportModal}
+      onRequestClose={closeImportModal}
       className="modal-body"
       overlayClassName="modal-overlay"
     >
@@ -98,7 +93,7 @@ export function ImportModal({
         <Button
           color={"#5C4F4E"}
           bgColor={"#F7EDE1"}
-          onClick={handleCloseImportModal}
+          onClick={closeImportModal}
           aria-label="Fechar"
         >
           <span>fechar</span>

@@ -158,4 +158,8 @@ export default createGlobalStyle`
     background: ${lighten(0.25, saturate(0.3, "#7C2727"))};
   }
 
+  .hidden {
+    opacity: 0;
+  }
+
 `;
