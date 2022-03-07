@@ -35,6 +35,7 @@ export const ListItem = styled.li`
     flex: 1;
 
     strong {
+      display: block;
       font-size: 1.25rem;
       color: var(--text-title);
       font-weight: 600;

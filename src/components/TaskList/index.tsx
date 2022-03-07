@@ -43,18 +43,18 @@ export function TaskList() {
           {taskList.map((task) => (
             <ListItem key={task.id}>
               <input
+                id={task.id}
                 type="checkbox"
                 readOnly
                 checked={task.isCompleted}
                 onClick={() => handleToggleTask(task.id)}
               />
               <div>
-                <strong
-                  className={task.isCompleted ? "complete" : ""}
-                  onClick={() => handleToggleTask(task.id)}
-                >
-                  {task.title}
-                </strong>
+                <label htmlFor={task.id}>
+                  <strong className={task.isCompleted ? "complete" : ""}>
+                    {task.title}
+                  </strong>
+                </label>
                 {task.description && <p>{task.description}</p>}
               </div>
               <Button
