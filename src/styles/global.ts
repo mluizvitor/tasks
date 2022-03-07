@@ -164,4 +164,9 @@ export default createGlobalStyle`
     display: none;
   }
 
+  .disabled {
+    pointer-events: none;  
+    opacity: 0.5;
+    }
+
 `;

@@ -9,10 +9,14 @@ import { MenuInfo, MenuList } from "./styles";
 Modal.setAppElement("#root");
 
 export function ConfigModal() {
-  const { exportTasks, taskFile } = useTasks();
+  const { taskList, exportTasks, taskFile } = useTasks();
   const { isConfigModalOpen, closeConfigModal } = useModal();
   const { openImportModal, openDeleteAllModal } = useModal();
   const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
+
+  function handleExportTasks() {
+    exportTasks();
+  }
 
   return (
     <>
@@ -35,7 +39,10 @@ export function ConfigModal() {
             <span>Importar tarefas de arquivo</span>
           </li>
 
-          <li onClick={exportTasks}>
+          <li
+            onClick={handleExportTasks}
+            className={taskList.length === 0 ? "disabled" : ""}
+          >
             <FiFileText size={24} />
             <span>Salvar tarefas para arquivo</span>
             <a
@@ -48,7 +55,10 @@ export function ConfigModal() {
             </a>
           </li>
 
-          <li className="danger" onClick={openDeleteAllModal}>
+          <li
+            className={"danger " + (taskList.length === 0 ? "disabled" : "")}
+            onClick={openDeleteAllModal}
+          >
             <FiXOctagon size={24} />
             <span>Apagar todas as tarefas</span>
           </li>

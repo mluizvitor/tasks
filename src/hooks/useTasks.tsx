@@ -133,17 +133,26 @@ export function TaskProvider({ children }: TasksProviderProps) {
   }
 
   function exportTasks() {
-    let output = JSON.stringify(taskList, null, 2);
-    const blob = new Blob([output]);
-    const fileDownloadURL = URL.createObjectURL(blob);
+    try {
+      if (taskList.length === 0) {
+        return;
+      }
 
-    const nowTime = format(new Date(), "yyyy-MM-dd-HHmmss");
+      const output = JSON.stringify(taskList, null, 2);
 
-    setTaskFile({
-      fileUrl: fileDownloadURL,
-      fileName: "tasks-" + nowTime + ".bkp.json",
-      fileReady: true,
-    });
+      const blob = new Blob([output]);
+      const fileDownloadURL = URL.createObjectURL(blob);
+
+      const nowTime = format(new Date(), "yyyy-MM-dd-HHmmss");
+
+      setTaskFile({
+        fileUrl: fileDownloadURL,
+        fileName: "tasks-" + nowTime + ".bkp.json",
+        fileReady: true,
+      });
+    } catch {
+      toastError("Não foi possível salvar tarefas");
+    }
   }
 
   function deleteTask(taskId: string) {

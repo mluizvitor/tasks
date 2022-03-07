@@ -18,11 +18,6 @@ export const MenuList = styled.ul`
     align-items: center;
     cursor: pointer;
 
-    &.disabled {
-      cursor: not-allowed;
-      opacity: 0.4;
-    }
-
     &.danger {
       color: var(--main-color);
     }

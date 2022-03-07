@@ -13,6 +13,10 @@ interface ModalContextData {
   openImportModal: () => void;
   closeImportModal: () => void;
 
+  isExportModalOpen: boolean;
+  openExportModal: () => void;
+  closeExportModal: () => void;
+
   isDeleteAllModalOpen: boolean;
   openDeleteAllModal: () => void;
   closeDeleteAllModal: () => void;
@@ -28,6 +32,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isDeleteAllModalOpen, setDeleteAllModalOpen] = useState(false);
 
   /**
@@ -64,6 +69,17 @@ export function ModalProvider({ children }: ModalProviderProps) {
   }
 
   /**
+   * ExportModal methods
+   */
+  function openExportModal() {
+    setIsExportModalOpen(true);
+  }
+
+  function closeExportModal() {
+    setIsExportModalOpen(false);
+  }
+
+  /**
    * DeleteAllModal methods
    */
   function openDeleteAllModal() {
@@ -88,6 +104,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
         isImportModalOpen,
         openImportModal,
         closeImportModal,
+
+        isExportModalOpen,
+        openExportModal,
+        closeExportModal,
 
         isDeleteAllModalOpen,
         openDeleteAllModal,
