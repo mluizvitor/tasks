@@ -84,7 +84,12 @@ export function TaskProvider({ children }: TasksProviderProps) {
 
   function createTask(taskInput: TaskInput) {
     try {
-      if (taskInput.title.length === 0) {
+      const newTaskInput = {
+        title: taskInput.title.trim(),
+        description: taskInput.description.trim(),
+      };
+
+      if (newTaskInput.title.length === 0) {
         toastError("Você deve adicionar um título!");
 
         return;
@@ -93,7 +98,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
       let newTaskList = [...taskList];
 
       newTaskList.push({
-        ...taskInput,
+        ...newTaskInput,
         id: genId(),
         isCompleted: false,
       });
