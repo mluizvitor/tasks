@@ -10,7 +10,7 @@ export const MenuList = styled.ul`
   list-style: none;
 
   li {
-    min-height: 3rem;
+    min-height: 3.5rem;
     padding: 0 1.5rem;
     color: var(--text-title);
     display: flex;

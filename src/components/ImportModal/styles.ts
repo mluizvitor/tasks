@@ -12,8 +12,11 @@ export const ImportContainer = styled.div`
     div {
       background-color: var(--text-title);
       border-radius: 0.5rem 0 0 0.5rem;
-      padding: 1rem;
-      height: 3.5rem;
+      min-height: 3.5rem;
+      min-width: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       svg {
         color: var(--surface);

@@ -58,6 +58,10 @@ export default createGlobalStyle`
     color: var(--text-body)
   }
 
+  a {
+    color: var(--main-color)
+  }
+
   input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;

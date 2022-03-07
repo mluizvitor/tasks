@@ -71,7 +71,16 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
         </MenuList>
 
         <MenuInfo>
-          <p>Desenvolvido por Vitor Monteiro</p>
+          <p>
+            Desenvolvido por{" "}
+            <a
+              href="https://github.com/mluizvitor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Vitor Monteiro
+            </a>
+          </p>
           <p>Feito com ❤️ no Brasil 🇧🇷</p>
         </MenuInfo>
       </Modal>

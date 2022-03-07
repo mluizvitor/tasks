@@ -66,7 +66,6 @@ export function ImportModal({
       className="modal-body"
       overlayClassName="modal-overlay"
     >
-      <FiX size={24} className="modal-close" onClick={handleCloseImportModal} />
       <h1>Importar tarefas</h1>
       <p>
         Você pode restaurar tarefas a partir de um arquivo exportado
@@ -83,10 +82,20 @@ export function ImportModal({
           </div>
           <span>{fileName.length === 0 ? "Buscar arquivo..." : fileName}</span>
         </label>
+
         <input type="file" id="loadFile" onChange={handleFile} accept=".json" />
+
         <Button color={"#f7ede1"} bgColor={"#d8605b"} onClick={handleLoad}>
           <FiUpload size={24} />
-          <span>carregar</span>
+          <span>carregar arquivo</span>
+        </Button>
+
+        <Button
+          color={"#5C4F4E"}
+          bgColor={"#F7EDE1"}
+          onClick={handleCloseImportModal}
+        >
+          <span>fechar</span>
         </Button>
       </ImportContainer>
     </Modal>
