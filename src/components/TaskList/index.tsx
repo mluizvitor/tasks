@@ -55,6 +55,7 @@ export function TaskList() {
                 color="#D8605B"
                 bgColor="#F8E8E3"
                 onClick={() => handleDeleteTask(task.id)}
+                aria-label="Deletar"
               >
                 <FiTrash2 size={16} />
               </Button>

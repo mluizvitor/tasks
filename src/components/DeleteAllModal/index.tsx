@@ -37,6 +37,7 @@ export function DeleteAllModal({
             color={"#5C4F4E"}
             bgColor={"#F7EDE1"}
             onClick={handleCloseDeleteModal}
+            aria-label="Fechar"
           >
             <span>fechar</span>
           </Button>
@@ -52,6 +53,7 @@ export function DeleteAllModal({
               color={"#5C4F4E"}
               bgColor={"#F7EDE1"}
               onClick={handleCloseDeleteModal}
+              aria-label="Não deletar"
             >
               <span>Não deletar</span>
             </Button>
@@ -59,6 +61,7 @@ export function DeleteAllModal({
               color={"#FCF7F2"}
               bgColor={"#7C2727"}
               onClick={handleDeleteAllTasks}
+              aria-label="Deletar tudo"
             >
               <FiTrash2 />
               <span>Deletar tudo</span>

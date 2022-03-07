@@ -85,7 +85,12 @@ export function ImportModal({
 
         <input type="file" id="loadFile" onChange={handleFile} accept=".json" />
 
-        <Button color={"#f7ede1"} bgColor={"#d8605b"} onClick={handleLoad}>
+        <Button
+          color={"#f7ede1"}
+          bgColor={"#d8605b"}
+          onClick={handleLoad}
+          aria-label="Carregar arquivo"
+        >
           <FiUpload size={24} />
           <span>carregar arquivo</span>
         </Button>
@@ -94,6 +99,7 @@ export function ImportModal({
           color={"#5C4F4E"}
           bgColor={"#F7EDE1"}
           onClick={handleCloseImportModal}
+          aria-label="Fechar"
         >
           <span>fechar</span>
         </Button>

@@ -55,7 +55,7 @@ export function NewTaskModal({ isModalOpen, closeModal }: NewTaskModalProps) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <Button color="#F7EDE1" bgColor="#D8605B">
+        <Button color="#F7EDE1" bgColor="#D8605B" aria-label="Criar tarefa">
           <FiPlus size={24} />
           <span>criar tarefa</span>
         </Button>
