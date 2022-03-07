@@ -1,7 +1,7 @@
-import { FiTrash2, FiUpload } from "react-icons/fi";
-import { Container, ListItem, EmptyPage } from "./styles";
+import { FiTrash2 } from "react-icons/fi";
+import { Container, ListItem, EmptyPage, ListContainer } from "./styles";
 
-import emptyImg from "../../assets/empty.png";
+import emptyImg from "../../assets/empty.webp";
 import { Button } from "../Button";
 import { useTasks } from "../../hooks/useTasks";
 
@@ -33,32 +33,34 @@ export function TaskList() {
           </div> */}
         </EmptyPage>
       ) : (
-        taskList.map((task) => (
-          <ListItem key={task.id}>
-            <input
-              type="checkbox"
-              readOnly
-              checked={task.isCompleted}
-              onClick={() => handleToggleTask(task.id)}
-            />
-            <div>
-              <strong
-                className={task.isCompleted ? "complete" : ""}
+        <ListContainer>
+          {taskList.map((task) => (
+            <ListItem key={task.id}>
+              <input
+                type="checkbox"
+                readOnly
+                checked={task.isCompleted}
                 onClick={() => handleToggleTask(task.id)}
+              />
+              <div>
+                <strong
+                  className={task.isCompleted ? "complete" : ""}
+                  onClick={() => handleToggleTask(task.id)}
+                >
+                  {task.title}
+                </strong>
+                {task.description && <p>{task.description}</p>}
+              </div>
+              <Button
+                color="#D8605B"
+                bgColor="#F8E8E3"
+                onClick={() => handleDeleteTask(task.id)}
               >
-                {task.title}
-              </strong>
-              {task.description && <p>{task.description}</p>}
-            </div>
-            <Button
-              color="#D8605B"
-              bgColor="#F8E8E3"
-              onClick={() => handleDeleteTask(task.id)}
-            >
-              <FiTrash2 size={16} />
-            </Button>
-          </ListItem>
-        ))
+                <FiTrash2 size={16} />
+              </Button>
+            </ListItem>
+          ))}
+        </ListContainer>
       )}
     </Container>
   );

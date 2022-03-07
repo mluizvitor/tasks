@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-export const Container = styled.ul`
+export const Container = styled.div`
   background-color: var(--background);
   width: 100%;
   max-width: 64rem;
-  margin: 0 auto;
   padding: 1.5rem 0.5rem 3rem;
   border-radius: 1.5rem 1.5rem 0 0;
-  list-style: none;
   height: calc(100vh - 6rem);
+`;
+
+export const ListContainer = styled.ul`
+  margin: 0 auto;
+  list-style: none;
   overflow: auto;
 `;
 
