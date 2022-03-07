@@ -4,15 +4,17 @@ export const Container = styled.div`
   background-color: var(--background);
   width: 100%;
   max-width: 64rem;
-  padding: 1.5rem 0.5rem 3rem;
   border-radius: 1.5rem 1.5rem 0 0;
   height: calc(100vh - 6rem);
+  margin: 0 auto;
+  overflow: hidden;
 `;
 
 export const ListContainer = styled.ul`
-  margin: 0 auto;
+  padding: 1.5rem 0.5rem 3rem;
   list-style: none;
   overflow: auto;
+  height: 100%;
 `;
 
 export const ListItem = styled.li`
