@@ -18,6 +18,13 @@ interface Task {
 
 type TaskInput = Omit<Task, "id" | "isCompleted">;
 
+interface TaskImport {
+  id?: string;
+  title: string;
+  description: string;
+  isCompleted?: boolean;
+}
+
 interface TaskContentData {
   taskList: Task[];
   createTask: (taskInput: TaskInput) => void;
@@ -87,7 +94,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
     }
   }
 
-  function importTasks(taskInput: TaskInput[]) {
+  function importTasks(taskInput: TaskImport[]) {
     try {
       if (!taskInput) return;
 
@@ -99,7 +106,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
             title: task.title,
             description: task.description,
             id: genId(),
-            isCompleted: false,
+            isCompleted: task.isCompleted ? task.isCompleted : false,
           };
         }
       });
@@ -107,6 +114,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
       let newTaskList = [...taskList].concat(newTaskInput);
 
       setTaskList(newTaskList);
+      toastSuccess("👍️ Tarefas importadas com sucesso");
     } catch {
       toastError("🙅 Arquivo inválido");
     }

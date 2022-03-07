@@ -39,9 +39,10 @@ export function NewTaskModal() {
 
         <input
           type="text"
-          placeholder="Título"
+          placeholder="Título *"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
         />
 
         <textarea

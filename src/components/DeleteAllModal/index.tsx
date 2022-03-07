@@ -9,11 +9,13 @@ Modal.setAppElement("#root");
 
 export function DeleteAllModal() {
   const { taskList, deleteAllTasks } = useTasks();
-  const { isDeleteAllModalOpen, closeDeleteAllModal } = useModal();
+  const { isDeleteAllModalOpen, closeDeleteAllModal, closeConfigModal } =
+    useModal();
 
   function handleDeleteAllTasks() {
     deleteAllTasks();
     closeDeleteAllModal();
+    closeConfigModal();
   }
 
   return (
