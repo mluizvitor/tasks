@@ -3,6 +3,7 @@ import { FiFileText, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
 import { useTasks } from "../../hooks/useTasks";
 import { DeleteAllModal } from "../DeleteAllModal";
+import { ImportModal } from "../ImportModal";
 import { MenuInfo, MenuList } from "./styles";
 
 Modal.setAppElement("#root");
@@ -16,6 +17,7 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
   const { deleteAllTasks } = useTasks();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(true);
 
   function handleOpenDeleteModal() {
     setIsDeleteModalOpen(true);
@@ -24,6 +26,15 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
 
   function handleCloseDeleteModal() {
     setIsDeleteModalOpen(false);
+  }
+
+  function handleOpenImportModal() {
+    setIsImportModalOpen(true);
+    closeModal();
+  }
+
+  function handleCloseImportModal() {
+    setIsImportModalOpen(false);
   }
 
   function handleDeleteAllTasks() {
@@ -43,7 +54,7 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
         <h1>Configurações</h1>
 
         <MenuList>
-          <li className="disabled">
+          <li onClick={handleOpenImportModal}>
             <FiUpload size={24} />
             <span>Importar tarefas de arquivo</span>
           </li>
@@ -69,6 +80,11 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
         isDeleteModalOpen={isDeleteModalOpen}
         handleCloseDeleteModal={handleCloseDeleteModal}
         handleDeleteAllTasks={handleDeleteAllTasks}
+      />
+
+      <ImportModal
+        isImportModalOpen={isImportModalOpen}
+        handleCloseImportModal={handleCloseImportModal}
       />
     </>
   );

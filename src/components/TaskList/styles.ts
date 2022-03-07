@@ -96,36 +96,4 @@ export const EmptyPage = styled.div`
       margin: 0.5rem 0;
     }
   }
-
-  label,
-  label > span,
-  label > p {
-    display: flex;
-    align-items: center;
-  }
-  label {
-    cursor: pointer;
-    min-height: 3.5rem;
-
-    span {
-      background: var(--text-body);
-      color: var(--surface);
-      border-radius: 0.5rem 0 0 0.5rem;
-      padding: 0 1rem;
-      height: 100%;
-    }
-
-    p {
-      height: 100%;
-      flex: 1;
-      background-color: var(--background);
-      border-radius: 0 0.5rem 0.5rem 0;
-      padding: 1rem 1rem;
-      color: var(--text-title);
-      font-size: 1rem;
-    }
-  }
-  input[type="file"] {
-    display: none;
-  }
 `;

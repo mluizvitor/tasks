@@ -40,4 +40,8 @@ export const ButtonTwoOptions = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 475px) {
+    grid-template-columns: 1fr;
+  }
 `;
