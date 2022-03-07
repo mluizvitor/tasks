@@ -82,6 +82,14 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
             </a>
           </p>
           <p>Feito com ❤️ no Brasil 🇧🇷</p>
+          <br />
+          <p>
+            Illustration by{" "}
+            <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">
+              Icons 8
+            </a>{" "}
+            from <a href="https://icons8.com/illustrations">Ouch!</a>
+          </p>
         </MenuInfo>
       </Modal>
 
