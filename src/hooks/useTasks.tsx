@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, {
   createContext,
   ReactNode,
@@ -28,8 +29,10 @@ interface TaskImport {
 
 interface TaskContentData {
   taskList: Task[];
+  taskFile: TaskFileProps;
   createTask: (taskInput: TaskInput) => void;
   importTasks: (taskInput: TaskInput[]) => void;
+  exportTasks: () => void;
   deleteTask: (taskId: string) => void;
   deleteAllTasks: () => void;
   toggleTask: (taskId: string) => void;
@@ -40,6 +43,12 @@ interface TaskContentData {
 
 interface TasksProviderProps {
   children?: ReactNode;
+}
+
+interface TaskFileProps {
+  fileUrl?: string;
+  fileName?: string;
+  fileReady: boolean;
 }
 
 const TaskContext = createContext<TaskContentData>({} as TaskContentData);
@@ -56,6 +65,8 @@ export function TaskProvider({ children }: TasksProviderProps) {
 
     return [];
   });
+
+  const [taskFile, setTaskFile] = useState<TaskFileProps>({} as TaskFileProps);
 
   function toastSuccess(toastInput: string) {
     toast(<SuccessToast toastMsg={toastInput} />, {
@@ -121,6 +132,20 @@ export function TaskProvider({ children }: TasksProviderProps) {
     }
   }
 
+  function exportTasks() {
+    let output = JSON.stringify(taskList, null, 2);
+    const blob = new Blob([output]);
+    const fileDownloadURL = URL.createObjectURL(blob);
+
+    const nowTime = format(new Date(), "yyyy-MM-dd-HHmmss");
+
+    setTaskFile({
+      fileUrl: fileDownloadURL,
+      fileName: "tasks-" + nowTime + ".bkp.json",
+      fileReady: true,
+    });
+  }
+
   function deleteTask(taskId: string) {
     try {
       toastSuccess("Tarefa removida com sucesso!");
@@ -155,12 +180,29 @@ export function TaskProvider({ children }: TasksProviderProps) {
     localStorage.setItem("@tasks:tasks", JSON.stringify(taskList));
   }, [taskList]);
 
+  useEffect(() => {
+    if (taskFile.fileReady) {
+      document.getElementById("downloadFile")?.click();
+      toastSuccess("Seu arquivo estará pronto em instantes!");
+
+      taskFile.fileUrl && URL.revokeObjectURL(taskFile.fileUrl);
+
+      setTaskFile({
+        fileName: "",
+        fileUrl: "",
+        fileReady: false,
+      });
+    }
+  }, [taskFile]);
+
   return (
     <TaskContext.Provider
       value={{
         taskList,
+        taskFile,
         createTask,
         importTasks,
+        exportTasks,
         deleteTask,
         deleteAllTasks,
         toggleTask,

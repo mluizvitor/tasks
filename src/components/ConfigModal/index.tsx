@@ -1,6 +1,7 @@
 import { FiFileText, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
+import { useTasks } from "../../hooks/useTasks";
 import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
 import { MenuInfo, MenuList } from "./styles";
@@ -8,6 +9,7 @@ import { MenuInfo, MenuList } from "./styles";
 Modal.setAppElement("#root");
 
 export function ConfigModal() {
+  const { exportTasks, taskFile } = useTasks();
   const { isConfigModalOpen, closeConfigModal } = useModal();
   const { openImportModal, openDeleteAllModal } = useModal();
   const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
@@ -33,9 +35,17 @@ export function ConfigModal() {
             <span>Importar tarefas de arquivo</span>
           </li>
 
-          <li className="disabled">
+          <li onClick={exportTasks}>
             <FiFileText size={24} />
             <span>Salvar tarefas para arquivo</span>
+            <a
+              className="hidden"
+              download={taskFile.fileName}
+              href={taskFile.fileUrl}
+              id="downloadFile"
+            >
+              download
+            </a>
           </li>
 
           <li className="danger" onClick={openDeleteAllModal}>
