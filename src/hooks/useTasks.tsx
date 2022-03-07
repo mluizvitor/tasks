@@ -7,6 +7,7 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 import { genId } from "../utils/genId";
+import { useModal } from "./useModal";
 
 interface Task {
   id: string;
@@ -36,6 +37,8 @@ interface TasksProviderProps {
 const TaskContext = createContext<TaskContentData>({} as TaskContentData);
 
 export function TaskProvider({ children }: TasksProviderProps) {
+  const { closeNewTaskModal } = useModal();
+
   const [taskList, setTaskList] = useState<Task[]>(() => {
     const tasks = localStorage.getItem("@tasks:tasks");
 
@@ -77,6 +80,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
       });
 
       setTaskList(newTaskList);
+      closeNewTaskModal();
       toastSuccess("👍️ Tarefa adicionada com sucesso!");
     } catch {
       toastError("😥️ Não foi possível adicionar tarefa!");

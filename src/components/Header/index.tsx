@@ -3,13 +3,11 @@ import { FiPlus, FiSettings } from "react-icons/fi";
 
 import logoImg from "../../assets/logo.svg";
 import { Button } from "../Button";
+import { useModal } from "../../hooks/useModal";
 
-interface HeaderProps {
-  openNewTaskModal: () => void;
-  openConfigModal: () => void;
-}
+export function Header() {
+  const { openConfigModal, openNewTaskModal } = useModal();
 
-export function Header({ openNewTaskModal, openConfigModal }: HeaderProps) {
   return (
     <Container>
       <img src={logoImg} alt="tasks" height={30} width={93} />

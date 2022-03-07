@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
 import { NewTaskModal } from "./components/NewTaskModal";
@@ -6,46 +6,19 @@ import { TaskList } from "./components/TaskList";
 import { TaskProvider } from "./hooks/useTasks";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ConfigModal } from "./components/ConfigModal";
+import { ModalProvider } from "./hooks/useModal";
 
 function App() {
-  const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
-  const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
-
-  function handleOpenNewTaskModal() {
-    setIsNewTaskModalOpen(true);
-  }
-
-  function handleCloseModal() {
-    setIsNewTaskModalOpen(false);
-  }
-
-  function handleOpenConfigModal() {
-    setIsConfigModalOpen(true);
-  }
-
-  function handleCloseConfigModal() {
-    setIsConfigModalOpen(false);
-  }
-
   return (
-    <>
-      <Header
-        openNewTaskModal={handleOpenNewTaskModal}
-        openConfigModal={handleOpenConfigModal}
-      />
+    <ModalProvider>
+      <Header />
       <TaskProvider>
         <TaskList />
-        <NewTaskModal
-          isModalOpen={isNewTaskModalOpen}
-          closeModal={handleCloseModal}
-        />
-        <ConfigModal
-          isModalOpen={isConfigModalOpen}
-          closeModal={handleCloseConfigModal}
-        />
+        <NewTaskModal />
+        <ConfigModal />
       </TaskProvider>
       <ToastContainer limit={4} autoClose={3000} draggablePercent={50} />
-    </>
+    </ModalProvider>
   );
 }
 

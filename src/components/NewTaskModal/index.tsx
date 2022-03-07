@@ -6,19 +6,16 @@ import { FiPlus, FiX } from "react-icons/fi";
 import { NewTaskForm } from "./styles";
 import { FormEvent } from "react";
 import { useTasks } from "../../hooks/useTasks";
+import { useModal } from "../../hooks/useModal";
 
 Modal.setAppElement("#root");
 
-interface NewTaskModalProps {
-  isModalOpen: boolean;
-  closeModal: () => void;
-}
-
-export function NewTaskModal({ isModalOpen, closeModal }: NewTaskModalProps) {
+export function NewTaskModal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const { createTask } = useTasks();
+  const { isNewTaskModalOpen, closeNewTaskModal } = useModal();
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -27,19 +24,17 @@ export function NewTaskModal({ isModalOpen, closeModal }: NewTaskModalProps) {
     setDescription("");
 
     createTask({ title, description });
-
-    closeModal();
   }
 
   return (
     <Modal
-      isOpen={isModalOpen}
-      onRequestClose={closeModal}
+      isOpen={isNewTaskModalOpen}
+      onRequestClose={closeNewTaskModal}
       className="modal-body"
       overlayClassName="modal-overlay"
     >
       <NewTaskForm onSubmit={handleSubmit}>
-        <FiX size={24} className="modal-close" onClick={closeModal} />
+        <FiX size={24} className="modal-close" onClick={closeNewTaskModal} />
         <h1>Criar nova tarefa</h1>
 
         <input

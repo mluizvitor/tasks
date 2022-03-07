@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiFileText, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
+import { useModal } from "../../hooks/useModal";
 import { useTasks } from "../../hooks/useTasks";
 import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
@@ -8,20 +9,17 @@ import { MenuInfo, MenuList } from "./styles";
 
 Modal.setAppElement("#root");
 
-interface ConfigModalProps {
-  isModalOpen: boolean;
-  closeModal: () => void;
-}
-
-export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
+export function ConfigModal() {
   const { deleteAllTasks } = useTasks();
+
+  const { isConfigModalOpen, closeConfigModal } = useModal();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
   function handleOpenDeleteModal() {
     setIsDeleteModalOpen(true);
-    closeModal();
+    closeConfigModal();
   }
 
   function handleCloseDeleteModal() {
@@ -30,7 +28,7 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
 
   function handleOpenImportModal() {
     setIsImportModalOpen(true);
-    closeModal();
+    closeConfigModal();
   }
 
   function handleCloseImportModal() {
@@ -45,12 +43,12 @@ export function ConfigModal({ isModalOpen, closeModal }: ConfigModalProps) {
   return (
     <>
       <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
+        isOpen={isConfigModalOpen}
+        onRequestClose={closeConfigModal}
         className="modal-body"
         overlayClassName="modal-overlay"
       >
-        <FiX size={24} className="modal-close" onClick={closeModal} />
+        <FiX size={24} className="modal-close" onClick={closeConfigModal} />
         <h1>Configurações</h1>
 
         <MenuList>
