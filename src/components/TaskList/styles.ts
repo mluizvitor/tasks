@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--background);
+  background-color: ${(props) => props.theme.background};
   width: 100%;
   max-width: 64rem;
   border-radius: 1.5rem 1.5rem 0 0;
@@ -18,7 +18,7 @@ export const ListContainer = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  background-color: var(--surface);
+  background-color: ${(props) => props.theme.surface};
   padding: 1.5rem;
   border-radius: 1.5rem;
   display: flex;
@@ -37,7 +37,7 @@ export const ListItem = styled.li`
     strong {
       display: block;
       font-size: 1.25rem;
-      color: var(--text-title);
+      color: ${(props) => props.theme.textTitle};
       font-weight: 600;
 
       &.complete {
@@ -49,7 +49,7 @@ export const ListItem = styled.li`
       font-size: 0.875rem;
       line-height: 1.25rem;
       margin-top: 0.5rem;
-      color: var(--text-body);
+      color: ${(props) => props.theme.textBody};
 
       &.complete {
         display: none;
@@ -82,7 +82,7 @@ export const EmptyPage = styled.div`
   }
 
   p {
-    color: var(--text-title);
+    color: ${(props) => props.theme.textTitle};
     font-size: 1.25rem;
     text-align: center;
   }
@@ -91,7 +91,7 @@ export const EmptyPage = styled.div`
     display: grid;
     gap: 1rem;
     margin-top: 2rem;
-    background-color: var(--surface);
+    background-color: ${(props) => props.theme.surface};
     padding: 1.5rem;
     border-radius: 1.5rem;
 

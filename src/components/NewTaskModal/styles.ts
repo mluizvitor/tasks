@@ -6,7 +6,7 @@ export const NewTaskForm = styled.form`
 
   input,
   textarea {
-    color: var(--text-title);
+    color: ${(props) => props.theme.textTitle};
     border-radius: 0.5rem;
   }
 
@@ -23,11 +23,11 @@ export const NewTaskForm = styled.form`
 
   input,
   textarea {
-    background-color: var(--background);
-    border: 2px solid var(--background);
+    background-color: ${(props) => props.theme.background};
+    border: 2px solid ${(props) => props.theme.background};
 
     &:focus-visible {
-      border-color: var(--main-color);
+      border-color: ${(props) => props.theme.mainColor};
     }
   }
 `;

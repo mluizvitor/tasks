@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { Button } from "../Button";
+import { Button } from "../Button/styles";
 
 import { FiPlus, FiX } from "react-icons/fi";
 import { NewTaskForm } from "./styles";
@@ -52,7 +52,7 @@ export function NewTaskModal() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <Button color="#F7EDE1" bgColor="#D8605B" aria-label="Criar tarefa">
+        <Button variant="colored" aria-label="Criar tarefa">
           <FiPlus size={24} />
           <span>criar tarefa</span>
         </Button>

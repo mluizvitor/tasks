@@ -3,7 +3,7 @@ import { FiCheckCircle, FiSearch, FiUpload } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { useTasks } from "../../hooks/useTasks";
-import { Button } from "../Button";
+import { Button } from "../Button/styles";
 import { ImportContainer } from "./styles";
 
 Modal.setAppElement("#root");
@@ -81,8 +81,7 @@ export function ImportModal() {
         <input type="file" id="loadFile" onChange={handleFile} accept=".json" />
 
         <Button
-          color={"#f7ede1"}
-          bgColor={"#d8605b"}
+          variant="colored"
           onClick={handleLoad}
           aria-label="Carregar arquivo"
         >
@@ -90,12 +89,7 @@ export function ImportModal() {
           <span>carregar arquivo</span>
         </Button>
 
-        <Button
-          color={"#5C4F4E"}
-          bgColor={"#F7EDE1"}
-          onClick={closeImportModal}
-          aria-label="Fechar"
-        >
+        <Button onClick={closeImportModal} aria-label="Fechar">
           <span>fechar</span>
         </Button>
       </ImportContainer>

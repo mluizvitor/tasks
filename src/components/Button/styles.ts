@@ -1,16 +1,11 @@
-import { darken } from "polished";
+import { transparentize } from "polished";
 import styled from "styled-components";
 
-type ButtonProps = {
-  color?: string;
-  bgColor?: string;
-};
+interface ButtonProps {
+  variant?: "basic" | "colored" | "warning" | "semitransparent";
+}
 
-export const ButtonContainer = styled.button<ButtonProps>`
-  color: ${(props) => (props.color ? props.color : "var(--surface)")};
-  background-color: ${(props) =>
-    props.bgColor ? props.bgColor : "var(--main-color)"};
-
+export const Button = styled.button<ButtonProps>`
   height: 3rem;
   padding: 0 0.75rem;
   border: none;
@@ -19,16 +14,46 @@ export const ButtonContainer = styled.button<ButtonProps>`
   align-items: center;
   justify-content: center;
 
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: ${(props) =>
-      props.bgColor ? darken(0.05, props.bgColor) : darken(0.05, "#D8605B")};
-  }
+  transition: filter 0.2s;
 
   svg + span {
     margin-left: 0.75rem;
   }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  ${(props) => {
+    switch (props.variant) {
+      case "colored":
+        return `
+        background-color: ${props.theme.variant.colored.mainColor};
+        color: ${props.theme.variant.colored.contrastColor}
+        `;
+
+      case "warning":
+        return `
+        background-color: ${props.theme.variant.warning.mainColor};
+        color: ${props.theme.variant.warning.contrastColor}
+        `;
+
+      case "semitransparent":
+        return `
+        background-color: ${transparentize(
+          0.85,
+          props.theme.variant.semitransparent.mainColor
+        )};
+        color: ${props.theme.variant.semitransparent.contrastColor}`;
+
+      case "basic":
+      default:
+        return `
+        background-color: ${props.theme.variant.basic.mainColor};
+        color: ${props.theme.variant.basic.contrastColor}
+        `;
+    }
+  }}
 `;
 
 export const ButtonTwoOptions = styled.div`

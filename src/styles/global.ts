@@ -1,21 +1,38 @@
 import { darken, transparentize, saturate, lighten } from "polished";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, DefaultTheme } from "styled-components";
+
+export const sunsetTheme: DefaultTheme = {
+  mainColor: "#D8605B",
+  textTitle: "#4c4141",
+  textBody: "#756a69",
+  surface: "#FCF7F2",
+  background: "#F7EDE1",
+  success: "#2D403B",
+  error: "#513c27",
+
+  variant: {
+    basic: {
+      mainColor: "#F7EDE1",
+      contrastColor: "#4c4141",
+    },
+    colored: {
+      mainColor: "#D8605B",
+      contrastColor: "#FCF7F2",
+    },
+    semitransparent: {
+      mainColor: "#D8605B",
+      contrastColor: "#D8605B",
+    },
+    warning: {
+      mainColor: darken(0.2, "#D8605B"),
+      contrastColor: "#FCF7F2",
+    },
+  },
+};
 
 export default createGlobalStyle`
 
   :root {
-
-    --main-color: #D8605B;
-
-    --text-title: #5C4F4E;
-    --text-body: #948685;
-
-    --surface: #FCF7F2;
-    --background: #F7EDE1;
-
-    --success: #2D403B;
-    --error: HSL(30, 52%, 32%);
-
     --toastify-toast-width: 24rem;
     --toastify-toast-min-height: 4rem;
     --toastify-font-family: 'Work Sans', sans-serif;
@@ -27,16 +44,14 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html {
-    background-color: var(--main-color);
-  }
-
+  
   body, button, input, textarea, span { 
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
   }
-
+  
   body {
+    background-color: ${(props) => props.theme.mainColor};
     font-weight: 400;
   }
 
@@ -53,17 +68,17 @@ export default createGlobalStyle`
   }
   
   h1 {
-    color: var(--text-title);
+    color: ${(props) => props.theme.textTitle};
     font-size: 1.25rem;
     line-height: 1.5rem;
   }
 
   p {
-    color: var(--text-body)
+    color: ${(props) => props.theme.textBody};
   }
 
   a {
-    color: var(--main-color)
+    color: ${(props) => props.theme.mainColor};
   }
 
   input[type="checkbox"] {
@@ -76,7 +91,7 @@ export default createGlobalStyle`
     font: inherit;
     width: 1.5rem;
     height: 1.5rem;
-    border: 2px solid var(--main-color);
+    border: 2px solid ${(props) => props.theme.mainColor};
     border-radius: 12px;
 
     display: grid;
@@ -88,14 +103,14 @@ export default createGlobalStyle`
       height: 1.5rem;
       transform: scale(1);
 
-      background-color: var(--surface);
+      background-color: ${(props) => props.theme.surface};
       transform-origin: center;
       clip-path: polygon(25.000% 41.667%, 16.667% 50.000%, 41.667% 75.000%, 83.333% 33.333%, 75.000% 25.000%, 41.667% 58.333%)
 
     }
     
     &:checked {
-      background-color: var(--main-color);
+      background-color: ${(props) => props.theme.mainColor};
     }
     &:checked::before {
       transform: scale(1);
@@ -105,7 +120,7 @@ export default createGlobalStyle`
   .modal-body {
     width: 100%;
     max-width: 512px;
-    background-color: var(--surface);
+    background-color: ${(props) => props.theme.surface};
     padding: 1.5rem;
     margin: 1.5rem;
     border-radius: 1.5rem;
@@ -116,7 +131,8 @@ export default createGlobalStyle`
 
   .modal-overlay {
     position: fixed;
-    background-color: ${darken(0.25, transparentize(0.25, "#8C3E3B"))};
+    background-color: ${(props) =>
+      darken(0.25, transparentize(0.25, props.theme.mainColor))};
     inset: 0px;
     display: flex;
     align-items: center;
@@ -127,7 +143,7 @@ export default createGlobalStyle`
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    color: var(--text-body);
+    color: ${(props) => props.theme.textBody};
     cursor: pointer;
   }
   .tasks-toastify-success,
@@ -136,27 +152,27 @@ export default createGlobalStyle`
     padding: 1rem 1rem;
 
     button > svg {
-      color: var(--surface);
+      color: ${(props) => props.theme.surface};
     }
 
     @media (max-width: 470px) {
-      margin: 1.5rem 1.5rem 0 ;
+      margin: 1.5rem;
     }
   }
   .tasks-toastify-success {
-    background-color: var(--success);
+    background-color: ${(props) => props.theme.success};
   }
 
   .tasks-toastify-success-progress {
-    background: ${lighten(0.25, saturate(0.3, "#2D403B"))};
+    background: ${(props) => lighten(0.25, saturate(0.3, props.theme.success))};
   }
   
   .tasks-toastify-error {
-    background-color: var(--error)
+    background-color: ${(props) => props.theme.error}
   }
 
   .tasks-toastify-error-progress {
-    background: ${lighten(0.25, saturate(0.3, "HSL(30, 52%, 32%)"))};
+    background: ${(props) => lighten(0.25, saturate(0.3, props.theme.error))};
   }
 
   .hidden {

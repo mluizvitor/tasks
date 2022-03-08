@@ -9,7 +9,6 @@ export const Container = styled.main`
     font-size: 1.5rem;
   }
   p {
-    color: var(--surface);
-    font-size: 1rem;
+    color: ${(props) => props.theme.surface};
   }
 `;
