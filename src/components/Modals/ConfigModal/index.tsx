@@ -1,7 +1,7 @@
 import { FiFileText, FiMoon, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
-import { useModal } from "../../hooks/useModal";
-import { useTasks } from "../../hooks/useTasks";
+import { useModal } from "../../../hooks/useModal";
+import { useTasks } from "../../../hooks/useTasks";
 import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
 import { MenuInfo, MenuList } from "./styles";

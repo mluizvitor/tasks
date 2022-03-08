@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { Task } from "../task";
 
 interface ModalContextData {
   isConfigModalOpen: boolean;
@@ -17,9 +18,16 @@ interface ModalContextData {
   openExportModal: () => void;
   closeExportModal: () => void;
 
+  isDeleteModalOpen: boolean;
+  openDeleteModal: () => void;
+  closeDeleteModal: () => void;
+
   isDeleteAllModalOpen: boolean;
   openDeleteAllModal: () => void;
   closeDeleteAllModal: () => void;
+
+  taskToDelete: Task;
+  handleTaskToDelete: (taskEntry: Task) => void;
 }
 
 interface ModalProviderProps {
@@ -33,7 +41,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isDeleteAllModalOpen, setDeleteAllModalOpen] = useState(false);
+
+  const [taskToDelete, setTaskToDelete] = useState<Task>({} as Task);
 
   /**
    * ConfigModal methods
@@ -80,6 +91,22 @@ export function ModalProvider({ children }: ModalProviderProps) {
   }
 
   /**
+   * DeleteModal methods
+   */
+
+  function openDeleteModal() {
+    setDeleteModalOpen(true);
+  }
+
+  function closeDeleteModal() {
+    setDeleteModalOpen(false);
+  }
+
+  function handleTaskToDelete(taskEntry: Task) {
+    setTaskToDelete(taskEntry);
+  }
+
+  /**
    * DeleteAllModal methods
    */
   function openDeleteAllModal() {
@@ -109,9 +136,16 @@ export function ModalProvider({ children }: ModalProviderProps) {
         openExportModal,
         closeExportModal,
 
+        isDeleteModalOpen,
+        openDeleteModal,
+        closeDeleteModal,
+
         isDeleteAllModalOpen,
         openDeleteAllModal,
         closeDeleteAllModal,
+
+        taskToDelete,
+        handleTaskToDelete,
       }}
     >
       {children}

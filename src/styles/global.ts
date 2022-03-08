@@ -7,6 +7,7 @@ export default createGlobalStyle`
     --toastify-toast-width: 24rem;
     --toastify-toast-min-height: 4rem;
     --toastify-font-family: 'Work Sans', sans-serif;
+    --toastify-z-index: 99;
   }
 
   * {
@@ -104,11 +105,16 @@ export default createGlobalStyle`
     border-radius: 1.5rem;
     position: relative;
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
 
     h1:first-of-type {
       margin-right: 1.5rem;
     }
+
+    p:last-of-type {
+      margin-bottom: 1rem ;
+    }
+
   }
 
   .modal-overlay {
@@ -148,6 +154,7 @@ export default createGlobalStyle`
 
     @media (max-width: 470px) {
       margin: 1.5rem;
+
     }
   }
   .tasks-toastify-success {

@@ -1,10 +1,10 @@
 import "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 import Modal from "react-modal";
-import { useModal } from "../../hooks/useModal";
-import { useTasks } from "../../hooks/useTasks";
-import { Button } from "../Button/styles";
-import { ButtonTwoOptions } from "../Button/styles";
+import { useModal } from "../../../hooks/useModal";
+import { useTasks } from "../../../hooks/useTasks";
+import { Button } from "../../Button/styles";
+import { ButtonTwoOptions } from "../../Button/styles";
 
 Modal.setAppElement("#root");
 

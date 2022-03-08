@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { Button } from "../Button/styles";
+import { Button } from "../../Button/styles";
 
 import { FiPlus, FiX } from "react-icons/fi";
 import { NewTaskForm } from "./styles";
 import { FormEvent } from "react";
-import { useTasks } from "../../hooks/useTasks";
-import { useModal } from "../../hooks/useModal";
+import { useTasks } from "../../../hooks/useTasks";
+import { useModal } from "../../../hooks/useModal";
 
 Modal.setAppElement("#root");
 

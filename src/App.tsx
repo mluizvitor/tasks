@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
-import { NewTaskModal } from "./components/NewTaskModal";
+import { NewTaskModal } from "./components/Modals/NewTaskModal";
 import { TaskList } from "./components/TaskList";
 import { TaskProvider } from "./hooks/useTasks";
 import GlobalStyles from "./styles/global";
 import "react-toastify/dist/ReactToastify.min.css";
 
-import { ConfigModal } from "./components/ConfigModal";
+import { ConfigModal } from "./components/Modals/ConfigModal";
 import { ModalProvider } from "./hooks/useModal";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/themes";
+import { DeleteModal } from "./components/Modals/DeleteModal";
 
 function App() {
   const [themeName, setThemeName] = useState(() => {
@@ -38,9 +39,14 @@ function App() {
         <Header />
         <TaskProvider>
           <TaskList />
+
           <NewTaskModal />
+
           <ConfigModal themeName={themeName} themeMethod={handleThemeChange} />
+
+          <DeleteModal />
         </TaskProvider>
+
         <ToastContainer
           limit={2}
           autoClose={3000}

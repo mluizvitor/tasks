@@ -5,13 +5,15 @@ import emptyImg from "../../assets/empty.webp";
 import { Button } from "../Button/styles";
 import { useTasks } from "../../hooks/useTasks";
 import { useModal } from "../../hooks/useModal";
+import { Task } from "../../task";
 
 export function TaskList() {
-  const { taskList, deleteTask, toggleTask } = useTasks();
-  const { openImportModal } = useModal();
+  const { taskList, toggleTask } = useTasks();
+  const { openImportModal, openDeleteModal, handleTaskToDelete } = useModal();
 
-  function handleDeleteTask(taskId: string) {
-    deleteTask(taskId);
+  function handleDeleteTask(taskEntry: Task) {
+    openDeleteModal();
+    handleTaskToDelete(taskEntry);
   }
 
   function handleToggleTask(taskId: string) {
@@ -55,7 +57,7 @@ export function TaskList() {
               </div>
               <Button
                 variant="semitransparent"
-                onClick={() => handleDeleteTask(task.id)}
+                onClick={() => handleDeleteTask(task)}
                 aria-label="Deletar"
               >
                 <FiTrash2 size={16} />
