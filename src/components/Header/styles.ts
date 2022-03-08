@@ -15,10 +15,10 @@ export const Container = styled.header`
     display: flex;
     gap: 1rem;
 
-    @media (max-width: 475px) {
+    /* @media (max-width: 475px) {
       button > span {
         display: none;
       }
-    }
+    } */
   }
 `;

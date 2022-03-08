@@ -10,7 +10,7 @@ export const ImportContainer = styled.div`
     display: flex;
 
     div {
-      background-color: ${(props) => props.theme.textTitle};
+      background-color: #5c4f4e;
       border-radius: 0.5rem 0 0 0.5rem;
       min-height: 3.5rem;
       min-width: 3.5rem;
@@ -19,7 +19,7 @@ export const ImportContainer = styled.div`
       justify-content: center;
 
       svg {
-        color: ${(props) => props.theme.surface};
+        color: #fcf7f2;
       }
     }
 
@@ -28,8 +28,8 @@ export const ImportContainer = styled.div`
       align-items: center;
       min-height: 3.5rem;
       width: 100%;
-      background: ${(props) => props.theme.textBody};
-      color: ${(props) => props.theme.surface};
+      background: #8a7d7c;
+      color: #fcf7f2;
       border-radius: 0 0.5rem 0.5rem 0;
       padding: 0 1rem;
     }

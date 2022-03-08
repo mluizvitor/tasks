@@ -32,7 +32,7 @@ export function DeleteAllModal() {
       </p>
       <ButtonTwoOptions>
         <Button onClick={closeDeleteAllModal} aria-label="Não deletar">
-          <span>Não deletar</span>
+          <span>não deletar</span>
         </Button>
         <Button
           variant="warning"
@@ -40,7 +40,7 @@ export function DeleteAllModal() {
           aria-label="Deletar tudo"
         >
           <FiTrash2 />
-          <span>Deletar tudo</span>
+          <span>deletar tudo</span>
         </Button>
       </ButtonTwoOptions>
     </Modal>

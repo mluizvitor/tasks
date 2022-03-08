@@ -18,8 +18,12 @@ export const MenuList = styled.ul`
     align-items: center;
     cursor: pointer;
 
+    label + input[type="checkbox"] {
+      margin-left: auto;
+    }
+
     &.danger {
-      color: ${(props) => props.theme.mainColor};
+      color: ${(props) => props.theme.buttonVariant.colored.mainColor};
     }
 
     &:hover {

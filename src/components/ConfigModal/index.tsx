@@ -1,4 +1,4 @@
-import { FiFileText, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
+import { FiFileText, FiMoon, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../hooks/useModal";
 import { useTasks } from "../../hooks/useTasks";
@@ -8,7 +8,12 @@ import { MenuInfo, MenuList } from "./styles";
 
 Modal.setAppElement("#root");
 
-export function ConfigModal() {
+interface ConfigModalProps {
+  themeName: string;
+  themeMethod: () => void;
+}
+
+export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
   const { taskList, exportTasks, taskFile } = useTasks();
   const { isConfigModalOpen, closeConfigModal } = useModal();
   const { openImportModal, openDeleteAllModal } = useModal();
@@ -34,6 +39,16 @@ export function ConfigModal() {
         <h1>Configurações</h1>
 
         <MenuList>
+          <li onClick={themeMethod}>
+            <FiMoon size={24} />
+            <label htmlFor="darkThemeCheckbox">Tema escuro</label>
+            <input
+              type="checkbox"
+              id="darkThemeCheckbox"
+              checked={themeName === "dark"}
+              readOnly
+            />
+          </li>
           <li onClick={openImportModal}>
             <FiUpload size={24} />
             <span>Importar tarefas de arquivo</span>

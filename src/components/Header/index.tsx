@@ -12,13 +12,17 @@ export function Header() {
     <Container>
       <img src={logoImg} alt="tasks" height={30} width={93} />
       <div>
-        <Button onClick={openNewTaskModal} aria-label="Nova tarefa">
+        <Button
+          variant="header"
+          onClick={openNewTaskModal}
+          aria-label="Nova tarefa"
+        >
           <FiPlus size={24} />
           <span>nova tarefa</span>
         </Button>
 
         <Button
-          variant="colored"
+          variant="transparent"
           onClick={openConfigModal}
           aria-label="Configurações"
         >

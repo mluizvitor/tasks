@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
 import { NewTaskModal } from "./components/NewTaskModal";
 import { TaskList } from "./components/TaskList";
 import { TaskProvider } from "./hooks/useTasks";
-import GlobalStyles, { sunsetTheme } from "./styles/global";
+import GlobalStyles from "./styles/global";
 import "react-toastify/dist/ReactToastify.min.css";
 
 import { ConfigModal } from "./components/ConfigModal";
 import { ModalProvider } from "./hooks/useModal";
 import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./styles/themes";
 
 function App() {
+  const [themeName, setThemeName] = useState(() => {
+    const theme = localStorage.getItem("@tasks:theme");
+
+    if (theme === "light") {
+      return "light";
+    }
+    return "dark";
+  });
+
+  function handleThemeChange() {
+    themeName === "light" ? setThemeName("dark") : setThemeName("light");
+  }
+
+  useEffect(() => {
+    localStorage.setItem("@tasks:theme", themeName);
+  }, [themeName]);
+
   return (
-    <ThemeProvider theme={sunsetTheme}>
+    <ThemeProvider theme={themeName === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
 
       <ModalProvider>
@@ -21,7 +39,7 @@ function App() {
         <TaskProvider>
           <TaskList />
           <NewTaskModal />
-          <ConfigModal />
+          <ConfigModal themeName={themeName} themeMethod={handleThemeChange} />
         </TaskProvider>
         <ToastContainer
           limit={2}

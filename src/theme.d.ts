@@ -8,18 +8,26 @@ interface variantProps {
 declare module "styled-components" {
   export interface DefaultTheme {
     mainColor: string;
+    mainColorPage: string;
+
     textTitle: string;
     textBody: string;
     surface: string;
     background: string;
-    success: string;
-    error: string;
 
-    variant: {
+    buttonVariant: {
       basic: variantProps;
+      header: variantProps;
       colored: variantProps;
       semitransparent: variantProps;
+      transparent: variantProps;
       warning: variantProps;
+    };
+
+    toast: {
+      success: string;
+      error: string;
+      onToast: string;
     };
   }
 }

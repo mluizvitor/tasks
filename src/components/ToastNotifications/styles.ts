@@ -9,6 +9,6 @@ export const Container = styled.main`
     font-size: 1.5rem;
   }
   p {
-    color: ${(props) => props.theme.surface};
+    color: ${(props) => props.theme.toast.onToast};
   }
 `;
