@@ -132,7 +132,7 @@ export default createGlobalStyle`
   .modal-overlay {
     position: fixed;
     background-color: ${(props) =>
-      darken(0.25, transparentize(0.25, props.theme.mainColor))};
+      darken(0.5, transparentize(0.25, props.theme.mainColor))};
     inset: 0px;
     display: flex;
     align-items: center;
