@@ -16,6 +16,7 @@ export function DeleteModal() {
   return (
     <Modal
       isOpen={isDeleteModalOpen}
+      onRequestClose={closeDeleteModal}
       className="modal-body"
       overlayClassName="modal-overlay"
     >
