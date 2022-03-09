@@ -2,9 +2,10 @@ import { FiFileText, FiMoon, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../../hooks/useModal";
 import { useTasks } from "../../../hooks/useTasks";
+import { ListMenu, ListMenuItem } from "../../List/styles";
 import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
-import { MenuInfo, MenuList } from "./styles";
+import { MenuInfo } from "./styles";
 
 Modal.setAppElement("#root");
 
@@ -38,8 +39,8 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
         <FiX size={24} className="modal-close" onClick={closeConfigModal} />
         <h1>Configurações</h1>
 
-        <MenuList>
-          <li onClick={themeMethod}>
+        <ListMenu>
+          <ListMenuItem onClick={themeMethod}>
             <FiMoon size={24} />
             <label htmlFor="darkThemeCheckbox">Tema escuro</label>
             <input
@@ -48,13 +49,13 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
               checked={themeName === "dark"}
               readOnly
             />
-          </li>
-          <li onClick={openImportModal}>
+          </ListMenuItem>
+          <ListMenuItem onClick={openImportModal}>
             <FiUpload size={24} />
             <span>Importar tarefas de arquivo</span>
-          </li>
+          </ListMenuItem>
 
-          <li
+          <ListMenuItem
             onClick={handleExportTasks}
             className={taskList.length === 0 ? "disabled" : ""}
           >
@@ -68,16 +69,16 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
             >
               download
             </a>
-          </li>
+          </ListMenuItem>
 
-          <li
+          <ListMenuItem
             className={"danger " + (taskList.length === 0 ? "disabled" : "")}
             onClick={openDeleteAllModal}
           >
             <FiXOctagon size={24} />
             <span>Apagar todas as tarefas</span>
-          </li>
-        </MenuList>
+          </ListMenuItem>
+        </ListMenu>
 
         <MenuInfo>
           <p>
