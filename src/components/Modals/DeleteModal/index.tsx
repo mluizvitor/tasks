@@ -34,7 +34,6 @@ export function DeleteModal() {
           variant="warning"
           onClick={() => handleDeleteTask(taskToManipulate.id)}
         >
-          <FiTrash2 size={24} />
           <span>deletar</span>
         </Button>
       </ButtonTwoOptions>

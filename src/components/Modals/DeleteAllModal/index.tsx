@@ -39,7 +39,6 @@ export function DeleteAllModal() {
           onClick={handleDeleteAllTasks}
           aria-label="Deletar tudo"
         >
-          <FiTrash2 />
           <span>deletar tudo</span>
         </Button>
       </ButtonTwoOptions>
