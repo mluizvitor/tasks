@@ -29,7 +29,15 @@ export function Menu() {
     <Modal
       id="taskMenu"
       isOpen={isTaskMenuOpen}
-      onRequestClose={closeTaskMenu}
+      onRequestClose={() => {
+        closeTaskMenu();
+        handleTaskToManipulate({
+          id: "",
+          title: "",
+          description: "",
+          isCompleted: false,
+        });
+      }}
       className="menu-body"
       overlayClassName="menu-overlay"
       style={{

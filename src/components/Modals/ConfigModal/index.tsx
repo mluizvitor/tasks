@@ -20,6 +20,8 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
   const { openImportModal, openDeleteAllModal } = useModal();
   const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
 
+  const appVersion: number = Number(process.env.REACT_APP_VERSION);
+
   function handleExportTasks() {
     exportTasks();
   }
@@ -92,7 +94,9 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
             </a>
           </p>
           <p>Feito com ❤️ no Brasil 🇧🇷</p>
+
           <br />
+
           <p>
             Illustration by{" "}
             <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">
@@ -100,6 +104,10 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
             </a>{" "}
             from <a href="https://icons8.com/illustrations">Ouch!</a>
           </p>
+
+          <br />
+
+          <p>v{appVersion}</p>
         </MenuInfo>
       </Modal>
 
