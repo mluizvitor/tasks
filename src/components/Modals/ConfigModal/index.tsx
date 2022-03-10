@@ -20,7 +20,7 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
   const { openImportModal, openDeleteAllModal } = useModal();
   const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
 
-  const appVersion: number = Number(process.env.REACT_APP_VERSION);
+  const appVersion = process.env.REACT_APP_VERSION;
 
   function handleExportTasks() {
     exportTasks();
