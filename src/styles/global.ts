@@ -1,6 +1,8 @@
 import { darken, transparentize, saturate, lighten } from "polished";
 import { createGlobalStyle } from "styled-components";
 
+const desktopReference = Number(process.env.REACT_APP_DESKTOP_REFERENCE_VALUE);
+
 export default createGlobalStyle`
 
   :root {
@@ -17,6 +19,8 @@ export default createGlobalStyle`
     transition-property: background, background-color, color  ;
     transition-duration: 0.5s;
     transition-timing-function: ease-out;
+
+    font-size: ${desktopReference + "px"}
   }
 
   

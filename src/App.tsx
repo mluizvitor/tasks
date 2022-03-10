@@ -20,10 +20,10 @@ function App() {
   const [themeName, setThemeName] = useState(() => {
     const theme = localStorage.getItem("@tasks:theme");
 
-    if (theme === "light") {
-      return "light";
+    if (theme === "dark") {
+      return "dark";
     }
-    return "dark";
+    return "light";
   });
 
   function handleThemeChange() {

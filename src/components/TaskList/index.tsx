@@ -31,50 +31,47 @@ export function TaskList() {
 
   return (
     <Container>
-      {taskList.length === 0 ? (
-        <EmptyPage>
-          <img src={emptyImg} alt="Nada por aqui ainda" />
-          <p>Suas tarefas aparacerão aqui</p>
-          <div>
-            <p>
-              Você pode importar um arquivo com suas tarefas salvas
-              anteriormente.
-            </p>
-            <Button variant="colored" onClick={openImportModal}>
-              importar
+      <EmptyPage className={taskList.length === 0 ? "" : "hidden"}>
+        <img src={emptyImg} alt="Nada por aqui ainda" />
+        <p>Suas tarefas aparacerão aqui</p>
+        <div>
+          <p>
+            Você pode importar um arquivo com suas tarefas salvas anteriormente.
+          </p>
+          <Button variant="colored" onClick={openImportModal}>
+            importar
+          </Button>
+        </div>
+      </EmptyPage>
+
+      <ListContainer className={taskList.length !== 0 ? "" : "hidden"}>
+        {taskList.map((task) => (
+          <ListItem key={task.id}>
+            <input
+              id={task.id}
+              type="checkbox"
+              readOnly
+              checked={task.isCompleted}
+              onClick={() => handleToggleTask(task.id)}
+            />
+            <div>
+              <label htmlFor={task.id}>
+                <strong className={task.isCompleted ? "complete" : ""}>
+                  {task.title}
+                </strong>
+              </label>
+              {task.description && <p>{task.description}</p>}
+            </div>
+            <Button
+              aria-label="Opções"
+              id={"b-" + task.id}
+              onClick={() => handleTaskMenuOpen(task)}
+            >
+              <FiMoreVertical />
             </Button>
-          </div>
-        </EmptyPage>
-      ) : (
-        <ListContainer>
-          {taskList.map((task) => (
-            <ListItem key={task.id}>
-              <input
-                id={task.id}
-                type="checkbox"
-                readOnly
-                checked={task.isCompleted}
-                onClick={() => handleToggleTask(task.id)}
-              />
-              <div>
-                <label htmlFor={task.id}>
-                  <strong className={task.isCompleted ? "complete" : ""}>
-                    {task.title}
-                  </strong>
-                </label>
-                {task.description && <p>{task.description}</p>}
-              </div>
-              <Button
-                aria-label="Opções"
-                id={"b-" + task.id}
-                onClick={() => handleTaskMenuOpen(task)}
-              >
-                <FiMoreVertical />
-              </Button>
-            </ListItem>
-          ))}
-        </ListContainer>
-      )}
+          </ListItem>
+        ))}
+      </ListContainer>
     </Container>
   );
 }

@@ -67,7 +67,7 @@ export const ListItem = styled.li`
 `;
 
 export const EmptyPage = styled.div`
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   display: grid;
   gap: 1rem;
   place-content: center;
@@ -77,7 +77,7 @@ export const EmptyPage = styled.div`
     width: 100%;
     height: 100%;
     min-height: 8rem;
-    max-width: 32rem;
+    max-width: 28rem;
     object-fit: contain;
   }
 
@@ -95,7 +95,7 @@ export const EmptyPage = styled.div`
     padding: 1.5rem;
     border-radius: 1.5rem;
 
-    max-width: 32rem;
+    max-width: 28rem;
 
     p:first-child {
       font-size: 1rem;
