@@ -23,19 +23,23 @@ R: Esta aplicação foi concebida como uma forma de praticar desenvolvimento com
 * Design responsivo.
 
 ## Galeria
+Criar Tarefa
+![Criar tarefa](/.github/createTask.gif)
 
-| Criar Tarefa                             | Editar tarefa                           |
-| ---------------------------------------- | --------------------------------------- |
-| ![Criar tarefa](/.github/createTask.gif) | ![Editar tarefa](/.github/editTask.gif) |
+Editar tarefa
+![Editar tarefa](/.github/editTask.gif)
 
-| Exportar tarefa                             | Importar tarefa                             |
-| ------------------------------------------- | ------------------------------------------- |
-| ![Exportar tarefa](/.github/exportTask.gif) | ![Importar tarefa](/.github/importTask.gif) |
+Exportar tarefa
+![Exportar tarefa](/.github/exportTask.gif)
 
-| Deletar tarefa                             | Tema escuro                            |
-| ------------------------------------------ | -------------------------------------- |
-| ![Deletar tarefa](/.github/deleteTask.gif) | ![Tema escuro](/.github/darkTheme.gif) |
+Importar tarefa
+![Importar tarefa](/.github/importTask.gif)
 
+Deletar tarefa
+![Deletar tarefa](/.github/deleteTask.gif)
+
+Tema escuro
+![Tema escuro](/.github/darkTheme.gif)
 
 ## Iniciando a aplicação
 
