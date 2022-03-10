@@ -5,7 +5,7 @@ import { useTasks } from "../../../hooks/useTasks";
 import { Button, ButtonTwoOptions } from "../../Button/styles";
 
 export function DeleteModal() {
-  const { isDeleteModalOpen, closeDeleteModal, taskToDelete } = useModal();
+  const { isDeleteModalOpen, closeDeleteModal, taskToManipulate } = useModal();
   const { deleteTask } = useTasks();
 
   function handleDeleteTask(taskId: string) {
@@ -23,7 +23,8 @@ export function DeleteModal() {
       <FiX size={24} className="modal-close" onClick={closeDeleteModal} />
       <h1>Deletar tarefa</h1>
       <p>
-        Tem certeza que deseja deletar "<strong>{taskToDelete.title}</strong>"?
+        Tem certeza que deseja deletar "
+        <strong>{taskToManipulate.title}</strong>"?
       </p>
       <ButtonTwoOptions>
         <Button onClick={closeDeleteModal}>
@@ -31,7 +32,7 @@ export function DeleteModal() {
         </Button>
         <Button
           variant="warning"
-          onClick={() => handleDeleteTask(taskToDelete.id)}
+          onClick={() => handleDeleteTask(taskToManipulate.id)}
         >
           <FiTrash2 size={24} />
           <span>deletar</span>

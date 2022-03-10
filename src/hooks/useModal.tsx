@@ -26,8 +26,8 @@ interface ModalContextData {
   openDeleteAllModal: () => void;
   closeDeleteAllModal: () => void;
 
-  taskToDelete: Task;
-  handleTaskToDelete: (taskEntry: Task) => void;
+  taskToManipulate: Task;
+  handleTaskToManipulate: (taskEntry: Task) => void;
 }
 
 interface ModalProviderProps {
@@ -44,7 +44,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isDeleteAllModalOpen, setDeleteAllModalOpen] = useState(false);
 
-  const [taskToDelete, setTaskToDelete] = useState<Task>({} as Task);
+  const [taskToManipulate, setTaskToManipulate] = useState<Task>({} as Task);
 
   /**
    * ConfigModal methods
@@ -102,8 +102,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setDeleteModalOpen(false);
   }
 
-  function handleTaskToDelete(taskEntry: Task) {
-    setTaskToDelete(taskEntry);
+  function handleTaskToManipulate(taskEntry: Task) {
+    setTaskToManipulate(taskEntry);
   }
 
   /**
@@ -144,8 +144,8 @@ export function ModalProvider({ children }: ModalProviderProps) {
         openDeleteAllModal,
         closeDeleteAllModal,
 
-        taskToDelete,
-        handleTaskToDelete,
+        taskToManipulate,
+        handleTaskToManipulate,
       }}
     >
       {children}

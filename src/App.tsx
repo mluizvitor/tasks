@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
 import { NewTaskModal } from "./components/Modals/NewTaskModal";
@@ -12,6 +12,8 @@ import { ModalProvider } from "./hooks/useModal";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/themes";
 import { DeleteModal } from "./components/Modals/DeleteModal";
+import { MenuProvider, useMenu } from "./hooks/useMenu";
+import { Menu } from "./components/Menu";
 
 function App() {
   const [themeName, setThemeName] = useState(() => {
@@ -36,23 +38,31 @@ function App() {
       <GlobalStyles />
 
       <ModalProvider>
-        <Header />
-        <TaskProvider>
-          <TaskList />
+        <MenuProvider>
+          <Header />
 
-          <NewTaskModal />
+          <TaskProvider>
+            <TaskList />
 
-          <ConfigModal themeName={themeName} themeMethod={handleThemeChange} />
+            <NewTaskModal />
 
-          <DeleteModal />
-        </TaskProvider>
+            <ConfigModal
+              themeName={themeName}
+              themeMethod={handleThemeChange}
+            />
 
-        <ToastContainer
-          limit={2}
-          autoClose={3000}
-          draggablePercent={50}
-          position={window.screenX > 475 ? "top-right" : "bottom-center"}
-        />
+            <DeleteModal />
+
+            <Menu />
+          </TaskProvider>
+
+          <ToastContainer
+            limit={2}
+            autoClose={3000}
+            draggablePercent={50}
+            position={window.screenX > 475 ? "top-right" : "bottom-center"}
+          />
+        </MenuProvider>
       </ModalProvider>
     </ThemeProvider>
   );

@@ -1,4 +1,4 @@
-import { FiTrash2 } from "react-icons/fi";
+import { FiMoreVertical } from "react-icons/fi";
 import { Container, ListItem, EmptyPage, ListContainer } from "./styles";
 
 import emptyImg from "../../assets/empty.webp";
@@ -6,18 +6,27 @@ import { Button } from "../Button/styles";
 import { useTasks } from "../../hooks/useTasks";
 import { useModal } from "../../hooks/useModal";
 import { Task } from "../../task";
+import { useMenu } from "../../hooks/useMenu";
 
 export function TaskList() {
   const { taskList, toggleTask } = useTasks();
-  const { openImportModal, openDeleteModal, handleTaskToDelete } = useModal();
-
-  function handleDeleteTask(taskEntry: Task) {
-    openDeleteModal();
-    handleTaskToDelete(taskEntry);
-  }
+  const { openImportModal, handleTaskToManipulate } = useModal();
+  const { openTaskMenu } = useMenu();
 
   function handleToggleTask(taskId: string) {
     toggleTask(taskId);
+  }
+
+  function handleTaskMenuOpen(taskEntry: Task) {
+    const elTrigger = document
+      .getElementById("b-" + taskEntry.id)
+      ?.getBoundingClientRect();
+
+    openTaskMenu({
+      elTop: elTrigger!.top,
+      elRight: elTrigger!.right,
+    });
+    handleTaskToManipulate(taskEntry);
   }
 
   return (
@@ -56,11 +65,11 @@ export function TaskList() {
                 {task.description && <p>{task.description}</p>}
               </div>
               <Button
-                variant="semitransparent"
-                onClick={() => handleDeleteTask(task)}
-                aria-label="Deletar"
+                aria-label="Opções"
+                id={"b-" + task.id}
+                onClick={() => handleTaskMenuOpen(task)}
               >
-                <FiTrash2 size={16} />
+                <FiMoreVertical />
               </Button>
             </ListItem>
           ))}

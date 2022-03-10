@@ -7,7 +7,6 @@ export default createGlobalStyle`
     --toastify-toast-width: 24rem;
     --toastify-toast-min-height: 4rem;
     --toastify-font-family: 'Work Sans', sans-serif;
-    --toastify-z-index: 99;
   }
 
   * {
@@ -29,15 +28,13 @@ export default createGlobalStyle`
   body {
     background-color: ${(props) => props.theme.mainColorPage};
     font-weight: 400;
+    overflow: hidden;
   }
 
   h1, h2, h3, h4, h5, h6, strong, button {
     font-weight: 600;
   }
 
-  body {
-    overflow: hidden;
-  }
   
   button { 
     cursor: pointer;
@@ -141,6 +138,29 @@ export default createGlobalStyle`
       opacity: 1;
     }
   }
+
+  .menu-body {
+    position: fixed;
+    margin: 0;
+    min-width: 10rem;
+
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    
+    background: ${(props) => lighten(0.05, props.theme.surface)};
+
+    li {
+      padding: 1rem;
+    }
+  }
+
+  .menu-overlay {
+    background: transparent;
+    position: fixed;
+    inset: 0px;
+  }
+
+
   .tasks-toastify-success,
   .tasks-toastify-error {
     border-radius: 1rem;
