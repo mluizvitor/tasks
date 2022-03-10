@@ -8,7 +8,7 @@ Tasks (estilizado como **tasks**) é uma aplicação de lista de tarefas. Ela é
 - [tasks](#tasks)
   - [Funcionalidades](#funcionalidades)
   - [Galeria](#galeria)
-  - [Iniciando a aplicação:](#iniciando-a-aplicação)
+  - [Iniciando a aplicação](#iniciando-a-aplicação)
 
 **Q: Por que mais uma aplicação desse tipo?**
 
@@ -37,7 +37,7 @@ R: Esta aplicação foi concebida como uma forma de praticar desenvolvimento com
 | ![Deletar tarefa](/.github/deleteTask.gif) | ![Tema escuro](/.github/darkTheme.gif) |
 
 
-## Iniciando a aplicação:
+## Iniciando a aplicação
 
 É possível acessar online em: [https://mvitor.dev/tasks](https://mvitor.dev/tasks)
 
