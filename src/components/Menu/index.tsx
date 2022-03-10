@@ -10,20 +10,22 @@ import Modal from "react-modal";
 // }
 
 export function Menu() {
-  const { openDeleteModal, handleTaskToManipulate } = useModal();
   const { isTaskMenuOpen, menuPosition, closeTaskMenu } = useMenu();
-  const { taskToManipulate } = useModal();
+  const { taskToManipulate, handleTaskToManipulate, clearTaskToManipulate } =
+    useModal();
+  const { openDeleteModal, openEditTaskModal } = useModal();
 
   function handleDeleteTask(taskEntry: Task) {
+    handleTaskToManipulate(taskEntry);
     closeTaskMenu();
     openDeleteModal();
-    handleTaskToManipulate(taskEntry);
   }
 
-  // function handleEditTask(taskEntry: Task) {
-  // openEditModal();
-  // handleTaskToManipulate(taskEntry);
-  // }
+  function handleEditTask(taskEntry: Task) {
+    handleTaskToManipulate(taskEntry);
+    closeTaskMenu();
+    openEditTaskModal();
+  }
 
   return (
     <Modal
@@ -31,12 +33,7 @@ export function Menu() {
       isOpen={isTaskMenuOpen}
       onRequestClose={() => {
         closeTaskMenu();
-        handleTaskToManipulate({
-          id: "",
-          title: "",
-          description: "",
-          isCompleted: false,
-        });
+        clearTaskToManipulate();
       }}
       className="menu-body"
       overlayClassName="menu-overlay"
@@ -44,10 +41,10 @@ export function Menu() {
         content: { top: menuPosition?.elTop, left: menuPosition?.elRight },
       }}
     >
-      {/* <ListMenuItem onClick={() => {}}>
+      <ListMenuItem onClick={() => handleEditTask(taskToManipulate)}>
         <FiEdit3 size={24} />
         <span>editar</span>
-      </ListMenuItem> */}
+      </ListMenuItem>
 
       <ListMenuItem onClick={() => handleDeleteTask(taskToManipulate)}>
         <FiTrash2 size={24} />

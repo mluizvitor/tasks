@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Header } from "./components/Header";
 import { NewTaskModal } from "./components/Modals/NewTaskModal";
@@ -12,8 +12,9 @@ import { ModalProvider } from "./hooks/useModal";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/themes";
 import { DeleteModal } from "./components/Modals/DeleteModal";
-import { MenuProvider, useMenu } from "./hooks/useMenu";
+import { MenuProvider } from "./hooks/useMenu";
 import { Menu } from "./components/Menu";
+import { EditTaskModal } from "./components/Modals/EditTaskModal";
 
 function App() {
   const [themeName, setThemeName] = useState(() => {
@@ -51,6 +52,7 @@ function App() {
               themeMethod={handleThemeChange}
             />
 
+            <EditTaskModal />
             <DeleteModal />
 
             <Menu />

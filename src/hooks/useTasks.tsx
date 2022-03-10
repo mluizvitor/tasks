@@ -31,6 +31,7 @@ interface TaskContentData {
   taskList: Task[];
   taskFile: TaskFileProps;
   createTask: (taskInput: TaskInput) => void;
+  editTask: (taskId: string, taskInput: TaskInput) => void;
   importTasks: (taskInput: TaskInput[]) => void;
   exportTasks: () => void;
   deleteTask: (taskId: string) => void;
@@ -54,7 +55,7 @@ interface TaskFileProps {
 const TaskContext = createContext<TaskContentData>({} as TaskContentData);
 
 export function TaskProvider({ children }: TasksProviderProps) {
-  const { closeNewTaskModal } = useModal();
+  const { closeNewTaskModal, closeEditTaskModal } = useModal();
 
   const [taskList, setTaskList] = useState<Task[]>(() => {
     const tasks = localStorage.getItem("@tasks:tasks");
@@ -108,6 +109,33 @@ export function TaskProvider({ children }: TasksProviderProps) {
       toastSuccess("Tarefa adicionada com sucesso!");
     } catch {
       toastError("Não foi possível adicionar tarefa!");
+    }
+  }
+
+  function editTask(taskId: string, taskInput: TaskInput) {
+    try {
+      let newTaskList = [...taskList];
+      const taskToEdit = newTaskList.findIndex((task) => task.id === taskId);
+
+      const editTaskInput = {
+        title: taskInput.title.trim(),
+        description: taskInput.description.trim(),
+      };
+
+      if (editTaskInput.title.length === 0) {
+        toastError("Você deve adicionar um título!");
+
+        return;
+      }
+
+      newTaskList[taskToEdit].title = taskInput.title;
+      newTaskList[taskToEdit].description = taskInput.description;
+
+      setTaskList(newTaskList);
+      closeEditTaskModal();
+      toastSuccess("Tarefa editada com sucesso!");
+    } catch {
+      toastError("Não foi possível editar tarefa!");
     }
   }
 
@@ -215,6 +243,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
         taskList,
         taskFile,
         createTask,
+        editTask,
         importTasks,
         exportTasks,
         deleteTask,

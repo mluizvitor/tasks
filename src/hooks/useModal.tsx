@@ -10,6 +10,10 @@ interface ModalContextData {
   openNewTaskModal: () => void;
   closeNewTaskModal: () => void;
 
+  isEditTaskModalOpen: boolean;
+  openEditTaskModal: () => void;
+  closeEditTaskModal: () => void;
+
   isImportModalOpen: boolean;
   openImportModal: () => void;
   closeImportModal: () => void;
@@ -28,6 +32,7 @@ interface ModalContextData {
 
   taskToManipulate: Task;
   handleTaskToManipulate: (taskEntry: Task) => void;
+  clearTaskToManipulate: () => void;
 }
 
 interface ModalProviderProps {
@@ -39,6 +44,7 @@ const ModalContext = createContext<ModalContextData>({} as ModalContextData);
 export function ModalProvider({ children }: ModalProviderProps) {
   const [isConfigModalOpen, setIsConfigModalOpen] = useState(false);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
+  const [isEditTaskModalOpen, setIsEditTaskModalOpen] = useState(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -66,6 +72,17 @@ export function ModalProvider({ children }: ModalProviderProps) {
 
   function closeNewTaskModal() {
     setIsNewTaskModalOpen(false);
+  }
+
+  /**
+   * EditTaskModal mothods
+   */
+  function openEditTaskModal() {
+    setIsEditTaskModalOpen(true);
+  }
+
+  function closeEditTaskModal() {
+    setIsEditTaskModalOpen(false);
   }
 
   /**
@@ -106,6 +123,15 @@ export function ModalProvider({ children }: ModalProviderProps) {
     setTaskToManipulate(taskEntry);
   }
 
+  function clearTaskToManipulate() {
+    setTaskToManipulate({
+      id: "",
+      title: "",
+      description: "",
+      isCompleted: false,
+    });
+  }
+
   /**
    * DeleteAllModal methods
    */
@@ -128,6 +154,10 @@ export function ModalProvider({ children }: ModalProviderProps) {
         openNewTaskModal,
         closeNewTaskModal,
 
+        isEditTaskModalOpen,
+        openEditTaskModal,
+        closeEditTaskModal,
+
         isImportModalOpen,
         openImportModal,
         closeImportModal,
@@ -146,6 +176,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
 
         taskToManipulate,
         handleTaskToManipulate,
+        clearTaskToManipulate,
       }}
     >
       {children}
