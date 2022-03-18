@@ -1,4 +1,4 @@
-import { FiTrash2, FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import Modal from "react-modal";
 import { useModal } from "../../../hooks/useModal";
 import { useTasks } from "../../../hooks/useTasks";
