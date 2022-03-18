@@ -1,4 +1,5 @@
 import { FiFileText, FiMoon, FiUpload, FiX, FiXOctagon } from "react-icons/fi";
+import { MdSort } from "react-icons/md";
 import Modal from "react-modal";
 import { useModal } from "../../../hooks/useModal";
 import { useTasks } from "../../../hooks/useTasks";
@@ -12,20 +13,28 @@ import AppPackage from "../../../../package.json";
 Modal.setAppElement("#root");
 
 interface ConfigModalProps {
-  themeName: string;
-  themeMethod: () => void;
+  themeChange: () => void;
+  sortChange: () => void;
+  configParams: { theme: string; completedLast: boolean };
 }
 
-export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
-  const { taskList, exportTasks, taskFile } = useTasks();
+export function ConfigModal({
+  themeChange,
+  sortChange,
+  configParams,
+}: ConfigModalProps) {
+  const { taskList, exportTasks, taskFile, sortCompletedLast } = useTasks();
   const { isConfigModalOpen, closeConfigModal } = useModal();
   const { openImportModal, openDeleteAllModal } = useModal();
   const { isDeleteAllModalOpen, isImportModalOpen } = useModal();
 
-  const appVersion = process.env.REACT_APP_VERSION;
-
   function handleExportTasks() {
     exportTasks();
+  }
+
+  function handleSort() {
+    sortCompletedLast(!configParams.completedLast);
+    sortChange();
   }
 
   return (
@@ -44,16 +53,34 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
         <h1>Configurações</h1>
 
         <ListMenu>
-          <ListMenuItem onClick={themeMethod}>
+          <ListMenuItem onClick={themeChange}>
             <FiMoon size={24} />
             <label htmlFor="darkThemeCheckbox">Tema escuro</label>
             <input
               type="checkbox"
               id="darkThemeCheckbox"
-              checked={themeName === "dark"}
+              name="darkThemeCheckbox"
+              checked={configParams.theme === "dark"}
               readOnly
             />
           </ListMenuItem>
+
+          <ListMenuItem onClick={handleSort}>
+            <MdSort size={24} />
+            <label htmlFor="completedLastCheckbox">
+              Completos para o fim da lista
+            </label>
+            <input
+              type="checkbox"
+              id="completedLastCheckbox"
+              checked={configParams.completedLast}
+              readOnly
+            />
+          </ListMenuItem>
+        </ListMenu>
+
+        <hr />
+        <ListMenu>
           <ListMenuItem onClick={openImportModal}>
             <FiUpload size={24} />
             <span>Importar tarefas de arquivo</span>

@@ -14,8 +14,10 @@ export const ListMenuItem = styled.li`
   align-items: center;
   cursor: pointer;
 
-  label + input[type="checkbox"] {
-    margin-left: auto;
+  label {
+    display: flex;
+    flex: 1;
+    pointer-events: none;
   }
 
   &.danger {

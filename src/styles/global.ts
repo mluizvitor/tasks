@@ -106,6 +106,12 @@ export default createGlobalStyle`
     }
   }
 
+  hr {
+    border: 0;
+    border-bottom: 1px solid ${(props) =>
+      transparentize(0.84, props.theme.textTitle)};
+  }
+
   .modal-body {
     width: 100%;
     max-width: 512px;

@@ -17,56 +17,77 @@ import { Menu } from "./components/Menu";
 import { EditTaskModal } from "./components/Modals/EditTaskModal";
 
 function App() {
-  const [themeName, setThemeName] = useState(() => {
-    const theme = localStorage.getItem("@tasks:theme");
+  const [configs, setConfigs] = useState(() => {
+    const config = localStorage.getItem("@tasks:configs");
 
-    if (theme === "dark") {
-      return "dark";
+    if (config) {
+      const parseConfig: { theme: string; completedLast: boolean } =
+        JSON.parse(config);
+
+      return {
+        theme: parseConfig.theme,
+        completedLast: parseConfig.completedLast,
+      };
     }
-    return "light";
+
+    return {
+      theme: "light",
+      completedLast: false,
+    };
   });
 
-  function handleThemeChange() {
-    themeName === "light" ? setThemeName("dark") : setThemeName("light");
+  function themeChange() {
+    configs.theme === "light"
+      ? setConfigs({ ...configs, theme: "dark" })
+      : setConfigs({ ...configs, theme: "light" });
+  }
+
+  function sortChange() {
+    setConfigs({ ...configs, completedLast: !configs.completedLast });
   }
 
   useEffect(() => {
-    localStorage.setItem("@tasks:theme", themeName);
-  }, [themeName]);
+    localStorage.setItem("@tasks:configs", JSON.stringify(configs));
+  }, [configs]);
 
   return (
-    <ThemeProvider theme={themeName === "light" ? lightTheme : darkTheme}>
-      <GlobalStyles />
+    <>
+      <TaskProvider>
+        <ThemeProvider
+          theme={configs.theme === "light" ? lightTheme : darkTheme}
+        >
+          <GlobalStyles />
 
-      <ModalProvider>
-        <MenuProvider>
-          <Header />
+          <ModalProvider>
+            <MenuProvider>
+              <Header />
 
-          <TaskProvider>
-            <TaskList />
+              <TaskList />
 
-            <NewTaskModal />
+              <NewTaskModal />
 
-            <ConfigModal
-              themeName={themeName}
-              themeMethod={handleThemeChange}
-            />
+              <ConfigModal
+                themeChange={themeChange}
+                sortChange={sortChange}
+                configParams={configs}
+              />
 
-            <EditTaskModal />
-            <DeleteModal />
+              <EditTaskModal />
+              <DeleteModal />
 
-            <Menu />
-          </TaskProvider>
+              <Menu />
 
-          <ToastContainer
-            limit={2}
-            autoClose={3000}
-            draggablePercent={50}
-            position={window.screenX > 475 ? "top-right" : "bottom-center"}
-          />
-        </MenuProvider>
-      </ModalProvider>
-    </ThemeProvider>
+              <ToastContainer
+                limit={2}
+                autoClose={3000}
+                draggablePercent={50}
+                position={window.screenX > 475 ? "top-right" : "bottom-center"}
+              />
+            </MenuProvider>
+          </ModalProvider>
+        </ThemeProvider>
+      </TaskProvider>
+    </>
   );
 }
 
