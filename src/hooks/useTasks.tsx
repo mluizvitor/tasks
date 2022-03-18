@@ -10,21 +10,24 @@ import { toast } from "react-toastify";
 import { ErrorToast, SuccessToast } from "../components/ToastNotifications";
 import { genId } from "../utils/genId";
 import { useModal } from "./useModal";
+import sorter from "sort-nested-json";
 
 interface Task {
   id: string;
   title: string;
   description: string;
   isCompleted: boolean;
+  timestamp: number;
 }
 
-type TaskInput = Omit<Task, "id" | "isCompleted">;
+type TaskInput = Omit<Task, "id" | "isCompleted" | "timestamp">;
 
 interface TaskImport {
   id?: string;
   title: string;
   description: string;
   isCompleted?: boolean;
+  timestamp?: number;
 }
 
 interface TaskContentData {
@@ -40,6 +43,8 @@ interface TaskContentData {
 
   toastSuccess: (toastInput: string) => void;
   toastError: (toastInput: string) => void;
+
+  sortCompletedLast: (confirmation: boolean) => void;
 }
 
 interface TasksProviderProps {
@@ -68,6 +73,18 @@ export function TaskProvider({ children }: TasksProviderProps) {
   });
 
   const [taskFile, setTaskFile] = useState<TaskFileProps>({} as TaskFileProps);
+
+  function sortCompletedLast(confirmation: boolean) {
+    let newTaskList = [...taskList];
+    let sortedList = "";
+
+    if (confirmation) {
+      sortedList = JSON.stringify(sorter.sort(newTaskList).asc("isCompleted"));
+    } else {
+      sortedList = JSON.stringify(sorter.sort(newTaskList).asc("timestamp"));
+    }
+    setTaskList(JSON.parse(sortedList));
+  }
 
   function toastSuccess(toastInput: string) {
     toast(<SuccessToast toastMsg={toastInput} />, {
@@ -102,6 +119,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
         ...newTaskInput,
         id: genId(),
         isCompleted: false,
+        timestamp: Math.round(new Date().getTime() / 1000),
       });
 
       setTaskList(newTaskList);
@@ -143,15 +161,22 @@ export function TaskProvider({ children }: TasksProviderProps) {
     try {
       if (!taskInput) return;
 
-      const newTaskInput: Task[] = taskInput.map((task) => {
+      let newTaskInput: Task[] = [];
+      let index = 0;
+
+      newTaskInput = taskInput.map((task) => {
         if (task.title.length === 0) {
           throw new Error();
         } else {
+          index++;
           return {
             title: task.title,
             description: task.description,
             id: genId(),
             isCompleted: task.isCompleted ? task.isCompleted : false,
+            timestamp: task.timestamp
+              ? task.timestamp
+              : Math.round(new Date().getTime() / 1000) + index,
           };
         }
       });
@@ -251,6 +276,7 @@ export function TaskProvider({ children }: TasksProviderProps) {
         toggleTask,
         toastSuccess,
         toastError,
+        sortCompletedLast,
       }}
     >
       {children}
