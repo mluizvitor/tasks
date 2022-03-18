@@ -7,6 +7,8 @@ import { DeleteAllModal } from "../DeleteAllModal";
 import { ImportModal } from "../ImportModal";
 import { MenuInfo } from "./styles";
 
+import AppPackage from "../../../../package.json";
+
 Modal.setAppElement("#root");
 
 interface ConfigModalProps {
@@ -107,7 +109,7 @@ export function ConfigModal({ themeMethod, themeName }: ConfigModalProps) {
 
           <br />
 
-          <p>v{appVersion}</p>
+          <p>v{AppPackage.version}</p>
         </MenuInfo>
       </Modal>
 
