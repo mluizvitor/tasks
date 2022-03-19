@@ -43,13 +43,13 @@ export function ImportModal() {
     setFileName(fileList[0].name);
   }
 
-  async function handleLoad() {
+  function handleLoad() {
     if (!fileExists) {
       toastError("Escolha um arquivo para carregar");
       return;
     }
 
-    await importTasks(selectedFile);
+    importTasks(selectedFile);
     closeImportModal();
     closeConfigModal();
   }

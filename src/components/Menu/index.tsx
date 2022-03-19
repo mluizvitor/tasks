@@ -5,10 +5,6 @@ import { Task } from "../../task";
 import { ListMenuItem } from "../List/styles";
 import Modal from "react-modal";
 
-// interface MenuProps {
-//   forwardRef: RefObject<HTMLElement> | null;
-// }
-
 export function Menu() {
   const { isTaskMenuOpen, menuPosition, closeTaskMenu } = useMenu();
   const { taskToManipulate, handleTaskToManipulate, clearTaskToManipulate } =

@@ -52,30 +52,31 @@ function App() {
 
   return (
     <>
-      <TaskProvider>
         <ThemeProvider
           theme={configs.theme === "light" ? lightTheme : darkTheme}
-        >
+          >
           <GlobalStyles />
 
           <ModalProvider>
             <MenuProvider>
               <Header />
 
-              <TaskList />
+              <TaskProvider>
+                <TaskList />
 
-              <NewTaskModal />
+                <NewTaskModal />
 
-              <ConfigModal
-                themeChange={themeChange}
-                sortChange={sortChange}
-                configParams={configs}
-              />
+                <ConfigModal
+                  themeChange={themeChange}
+                  sortChange={sortChange}
+                  configParams={configs}
+                />
 
-              <EditTaskModal />
-              <DeleteModal />
+                <EditTaskModal />
+                <DeleteModal />
 
-              <Menu />
+                <Menu />
+              </TaskProvider>
 
               <ToastContainer
                 limit={2}
@@ -86,7 +87,6 @@ function App() {
             </MenuProvider>
           </ModalProvider>
         </ThemeProvider>
-      </TaskProvider>
     </>
   );
 }
