@@ -1,7 +1,7 @@
 {
   "name": "tasks",
-  "homepage": "https://mvitor.dev/tasks/",
-  "version": "0.22.0318",
+  "homepage": ".",
+  "version": "0.23.1024",
   "desktopReference": 16,
   "dependencies": {
     "@testing-library/jest-dom": "^6.1.4",
